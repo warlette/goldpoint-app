@@ -1,0 +1,37 @@
+<div class="row breadcrumb-fixed">
+  <div class="col-sm-12">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item active"><a href="#/funds">Funds</a></li>
+    </ol>
+  </div>
+</div>
+<div class="row col-sm-12 content">
+<div class="card border-light col-sm-12" >
+    <div class="card-header"><h2>Add Fund</h2></div>
+    <div class="card-body">
+        <form #AddFund="ngForm" class="col-sm-12">
+            <fieldset>
+              <div class="form-group">
+                <label for="amount">Amount: </label>
+                <input type="text" class="form-control" id="amount"
+                required [(ngModel)]="iFund.Amount" name="amount" #amount="ngModel">
+                <div [hidden]="amount.valid || amount.pristine" class="alert alert-danger">
+                    Amount is required!
+                  </div>
+              </div>
+              <div class="form-group">
+                <label for="remarks">Remarks: </label>
+                <input type="text" class="form-control" id="remarks"
+                      [(ngModel)]="iFund.Remarks" name="remarks">
+              </div>
+              <hr class="my-4">
+              <button type="submit" class="btn btn-primary" (click)="save()">Submit</button>
+              <button type="submit" class="btn btn-secondary" (click)="cancel()">Cancel</button>
+              <button type="submit" class="btn btn-warning" (click)="clear()">Clear</button>
+            </fieldset>
+          </form>
+    </div>
+  </div>
+
+
+</div>

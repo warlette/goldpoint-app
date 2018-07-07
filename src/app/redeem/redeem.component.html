@@ -1,0 +1,122 @@
+<div class="row breadcrumb-fixed">
+  <div class="col-sm-12">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item active"><a href="#">Redeem</a></li>
+    </ol>
+  </div>
+</div>
+<div class="row col-sm-12 content">
+<div class="card border-light col-sm-12" >
+    <div class="card-header"><h2>Redeem</h2></div>
+    <div class="card-body">
+        <form #RedeemForm="ngForm" class="col-sm-12">
+            <fieldset>
+                <div class="form-group">
+                  <label for="clientId">Pawn ticket number: </label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <input type="text" class="form-control col-sm-8" id="clientId" style="display: inline;"
+                 required [(ngModel)]="iRedeem.Id" name="clientId" #clientId="ngModel" (change)="search(iRedeem)">
+                 <a class="btn btn-success col-sm-1" style="margin-top: -5px;" (click)="search(iRedeem.Id)">
+                   <i class="fa fa-search"></i>
+                 </a>
+                  <div [hidden]="clientId.valid || clientId.pristine" class="alert alert-danger">
+                   Pawn ticket required!
+                  </div>
+              </div>
+                <div class="form-group">
+                  <legend>Personal Information</legend>
+                  <hr class="my-4" style="margin: 0px !important">
+                </div>
+                <div class="form-group">
+                  <label for="name">Name: </label>
+                  <input type="text" class="form-control" id="name" disabled
+                 required [(ngModel)]="iRedeem.Name" name="name" #name="ngModel">
+                </div>
+                <div class="form-group">
+                  <label for="address">Address: </label>
+                  <input type="text" class="form-control" id="address" disabled
+                        required [(ngModel)]="iRedeem.Address" name="address" #address="ngModel">
+                </div>
+                <div class="form-group">
+                  <label for="bd">Birthdate: </label>
+                  <input type="text" class="form-control" id="bd" disabled
+                        required [(ngModel)]="iRedeem.Birthdate" name="db" #db="ngModel">
+                </div>
+                <div class="form-group">
+                  <label for="id">Id Presented: </label>
+                  <input type="text" class="form-control" id="id" disabled
+                        required [(ngModel)]="iRedeem.IdPresented" name="id" #id="ngModel">
+                </div>
+                <div class="form-group">
+                  <label for="cn">Contact Number: </label>
+                  <input type="text" class="form-control" id="cn" disabled
+                        required [(ngModel)]="iRedeem.Contact" name="cn" #cn="ngModel">
+                </div>
+                <div class="form-group">
+                  <legend>Pledged Details</legend>
+                  <hr class="my-4" style="margin: 0px !important">
+                </div>
+                <div class="form-group">
+                    <input type="checkbox" class="form-control" id="isgold" style="display: inline;" disabled
+                    required [(ngModel)]="iRedeem.isgold" name="isgold" #isgold="ngModel" (change)="search(iRedeem)">
+                    <label for="isgold">Is this Pledge for GOLD?</label>               
+                </div>
+                <div class="form-group">
+                  <label for="pt">Pawn Ticket Number: </label>
+                  <input type="text" class="form-control" id="pt" disabled
+                 required [(ngModel)]="iRedeem.PTNumber" name="pt" #pt="ngModel">
+                </div>
+                <div class="form-group">
+                  <label for="dg">Date Granted: </label>
+                  <input type="text" class="form-control" id="dg" disabled
+                 required [(ngModel)]="iRedeem.DateGranted" name="dg" #dg="ngModel">
+                </div>
+                <div class="form-group">
+                  <label for="dm">Date of Maturity: </label>
+                  <input type="text" class="form-control" id="dm" disabled
+                 required [(ngModel)]="iRedeem.DateMaturity" name="dm" #dm="ngModel">
+                </div>
+                <div class="form-group">
+                  <label for="de">Date of Expiry: </label>
+                  <input type="text" class="form-control" id="de" disabled
+                 required [(ngModel)]="iRedeem.DateExpiry" name="de" #de="ngModel">
+                </div>
+                <div class="form-group">
+                  <label for="pawn">Pawn Description: </label>
+                  <textarea class="form-control" id="pawn" disabled
+                 required [(ngModel)]="iRedeem.PawnDescription" name="pawn" #pawn="ngModel">
+                 </textarea>
+                </div>
+                <div class="form-group">
+                  <label for="principal">Principal: </label>
+                  <input type="text" class="form-control" id="principal" disabled
+                 required [(ngModel)]="iRedeem.Principal" name="principal" #principal="ngModel">
+                </div>
+                <div class="form-group">
+                  <label for="interest">Interest Rate (%): </label>
+                  <select class="form-control"  [(ngModel)]="iRedeem.Interest" disabled name="interest" id="interest">
+                      <option [ngValue]="1" selected>1%</option>
+                      <option value="5">5%</option>
+                      <option value="10">10%</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                  <label for="sc">Penalty: </label>
+                  <input type="text" class="form-control" id="sc" disabled
+                 required [(ngModel)]="iRedeem.ServiceCharge" name="sc" #sc="ngModel">
+                </div>
+                <div class="form-group">
+                  <label for="np">Total Amount To Be Paid: </label>
+                  <input type="text" class="form-control" id="np" disabled
+                 required [(ngModel)]="iRedeem.Total" name="np">
+                </div>
+                <hr class="my-4">
+                <button type="submit" class="btn btn-primary" (click)="save(true, iRedeem)">Submit</button>
+                <button type="submit" class="btn btn-secondary" (click)="cancel()">Cancel</button>
+                <button type="submit" class="btn btn-warning" (click)="clear()">Clear</button>
+              </fieldset>
+          </form>
+    </div>
+  </div>
+
+
+</div>

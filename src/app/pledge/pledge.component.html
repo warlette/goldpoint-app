@@ -1,0 +1,157 @@
+<div class="row breadcrumb-fixed">
+  <div class="col-sm-12">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item active"><a href="#">Pledge</a></li>
+    </ol>
+  </div>
+</div>
+<div class="row col-sm-12 content">
+<div class="card border-light col-sm-12" >
+    <div class="card-header"><h2>New Pledge</h2></div>
+    <div class="card-body">
+        <form #NewPledgeForm="ngForm" class="col-sm-12">
+            <fieldset>
+              <div class="form-group">
+                <label for="clientId">Customer Id: </label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="text" class="form-control col-sm-9" id="clientId" style="display: inline;"
+               required [(ngModel)]="Customer.id" name="clientId" #clientId="ngModel" (change)="search(Pledge)">
+               <a class="btn btn-success col-sm-1" style="margin-top: -5px;" (click)="search(Pledge.Id)">
+                 <i class="fa fa-search"></i>
+               </a>
+                <div [hidden]="clientId.valid || clientId.pristine" class="alert alert-danger">
+                  Client Id is required!
+                </div>
+            </div>
+              <div class="form-group">
+                <legend>Personal Information</legend>
+                <hr class="my-4" style="margin: 0px !important">
+              </div>
+              <div class="form-group">
+                <label for="firstname">First Name: </label>
+                <input type="text" class="form-control" id="firstname" disabled
+               required [(ngModel)]="Customer.firstname" name="firstname" #firstname="ngModel">
+              </div>
+              <div class="form-group">
+                <label for="middlename">Middle Name: </label>
+                <input type="text" class="form-control" id="middlename" disabled
+               required [(ngModel)]="Customer.middlename" name="middlename" #middlename="ngModel">
+              </div>
+              <div class="form-group">
+                <label for="lastname">Last Name: </label>
+                <input type="text" class="form-control" id="lastname" disabled
+               required [(ngModel)]="Customer.lastname" name="lastname" #lastname="ngModel">
+              </div>
+              <div class="form-group">
+                <label for="address">Address: </label>
+                <input type="text" class="form-control" id="address" disabled
+                      required [(ngModel)]="Customer.Address" name="address" #address="ngModel">
+              </div>
+              <div class="form-group">
+                <label for="bd">Birthdate: </label>
+                <input type="text" class="form-control" id="bd" disabled
+                      required [(ngModel)]="Customer.Birthdate" name="db" #db="ngModel">
+              </div>
+              <div class="form-group">
+                <label for="id">Id Presented: </label>
+                <input type="text" class="form-control" id="id" disabled
+                      required [(ngModel)]="Customer.IdPresented" name="id" #id="ngModel">
+              </div>
+              <div class="form-group">
+                <label for="cn">Contact Number: </label>
+                <input type="text" class="form-control" id="cn" disabled
+                      required [(ngModel)]="Customer.Contact" name="cn" #cn="ngModel">
+              </div>
+              <div class="form-group">
+                <legend>New Pledge Details</legend>
+                <hr class="my-4" style="margin: 0px !important">
+              </div>
+              <div class="form-group">
+                  <input type="checkbox" class="form-control" id="isgold" style="display: inline;"
+                  required [(ngModel)]="Pledge.isgold" name="isgold" #isgold="ngModel">
+                  <label for="isgold">Is this Pledge for GOLD?</label>               
+              </div>
+              <div class="form-group">
+                <label for="pawnticket">Pawn Ticket Number: </label>
+                <input type="text" class="form-control" id="pawnticket"
+               required [(ngModel)]="Pledge.pawnticket" name="pawnticket" #pawnticket="ngModel">
+                <div [hidden]="pawnticket.valid || pawnticket.pristine" class="alert alert-danger">
+                  Pawn ticket number is required!
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="dateadded">Date Granted: </label>
+                <input type="text" class="form-control" id="dateadded" disabled
+               required [(ngModel)]="Pledge.dateadded" name="dateadded" #dateadded="ngModel">
+              </div>
+              <div class="form-group">
+                <label for="datemature">Date of Maturity: </label>
+                <input type="text" class="form-control" id="datemature" disabled
+               required [(ngModel)]="Pledge.datemature" name="datemature" #datemature="ngModel">
+              </div>
+              <div class="form-group">
+                <label for="dateexpire">Date of Expiry: </label>
+                <input type="text" class="form-control" id="dateexpire" disabled
+               required [(ngModel)]="Pledge.dateexpire" name="dateexpire" #dateexpire="ngModel">
+              </div>
+              <div class="form-group">
+                <label for="description">Pawn Description: </label>
+                <textarea class="form-control" id="description"
+               required [(ngModel)]="Pledge.description" name="description" #description="ngModel">
+               </textarea>
+                <div [hidden]="description.valid || description.pristine" class="alert alert-danger">
+                  Pawn description is required!
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="principal">Principal: </label>
+                <input type="text" class="form-control" id="principal"
+               required [(ngModel)]="Pledge.principal" name="principal" #principal="ngModel">
+                <div [hidden]="principal.valid || principal.pristine" class="alert alert-danger">
+                  Principal is required!
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="interest">Interest Rate (%): </label>
+                <select class="form-control"  [(ngModel)]="Pledge.interest" name="interest" id="interest">
+                    <option [ngValue]="1" selected>1%</option>
+                    <option value="5">5%</option>
+                    <option value="10">10%</option>
+                  </select>
+              </div>
+              <div class="form-group">
+                <label for="frequency">Frequency: </label>
+                <select class="form-control"  [(ngModel)]="Pledge.frequency" name="frequency" id="frequency">
+                    <option [ngValue]="1" selected>1 day</option>
+                    <option value="2">1 month</option>
+                  </select>
+              </div>
+              <div class="form-group">
+                <label for="servicecharge">Service Charge: </label>
+                <input type="text" class="form-control" id="servicecharge"
+               required [(ngModel)]="Pledge.servicecharge" name="servicecharge" #servicecharge="ngModel">
+                <div [hidden]="servicecharge.valid || servicecharge.pristine" class="alert alert-danger">
+                  Service charge is required!
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="netproceed">Net Proceed: </label>
+                <input type="text" class="form-control" id="netproceed" disabled
+               [(ngModel)]="Pledge.netproceed" name="netproceed" #netproceed="ngModel">
+              </div>
+              <div class="form-group">
+                <label for="remarks">Remarks: </label>
+                <textarea class="form-control" id="remarks"
+                [(ngModel)]="Pledge.remarks" name="remarks" #remarks="ngModel">
+               </textarea>
+              </div>
+              <hr class="my-4">
+              <button type="submit" class="btn btn-primary" (click)="save(true, Pledge)">Submit</button>
+              <button type="submit" class="btn btn-secondary" (click)="cancel()">Cancel</button>
+              <button type="submit" class="btn btn-warning" (click)="clear()">Clear</button>
+            </fieldset>
+          </form>
+    </div>
+  </div>
+
+
+</div>

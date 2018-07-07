@@ -1,0 +1,7 @@
+.dropdown-menu.show[aria-labelledby="themes"] .dropdown-item {
+    width: 100%;
+}
+
+.dropdown-menu.show[aria-labelledby="themes"] {
+    width: 240px;
+}

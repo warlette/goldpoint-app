@@ -1,0 +1,72 @@
+<div class="row breadcrumb-fixed">
+  <div class="col-sm-12">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item active"><a href="#/pledge">New PLedge</a></li>
+    </ol>
+  </div>
+</div>
+<div class="row col-sm-12 content">
+<div class="card border-light col-sm-12" >
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary search-nav">
+        <div class="collapse navbar-collapse search">
+          <form class="form-inline my-2 my-lg-0">
+            Search Type:&nbsp;
+              <select class="form-control"  [(ngModel)]="term" name="term" id="term">
+                <option [ngValue]="undefined" selected>View All</option>
+                <option value="LoanId">Loan Id</option>
+                <option value="ClientId">Client Id</option>
+                <option value="FirstName">First Name</option>
+                <option value="LastName">Last Name</option>
+              </select>&nbsp;&nbsp;
+              <input class="form-control mr-sm-2" type="text" placeholder="Search" [(ngModel)]="searchee" name="searchee" id="searchee">
+              &nbsp;&nbsp;&nbsp;&nbsp;
+              Order by:&nbsp;
+              <select class="form-control"  [(ngModel)]="sortBy" name="sortBy" id="sortBy">
+                <option [ngValue]="undefined" selected>Sort</option>
+                <option value="LoanId">Loan Id</option>
+                <option value="ClientId">Client Id</option>
+                <option value="FirstName">First Name</option>
+                <option value="LastName">Last Name</option>
+              </select>     
+          </form>
+        </div>
+    </nav>
+    <div class="card-header"><h2>All In Pledge</h2></div>
+    <div class="card-body">
+        <div class="row">             
+            <a href="javascript:void(0);" (click)="print()" style="position: absolute; right: 30px; font-size: 25px;">
+              <i class="fa fa-print"></i>
+            </a>
+          </div> <br/><br/>
+        <table class="table table-hover table-stripe" id="collections">
+            <thead>
+              <tr>
+                <th scope="col" class="right">Redeem</th>
+                <th scope="col" class="right">Renew</th>
+                <th scope="col">Date Granted</th>
+                <th scope="col">Customer Id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Pawn Ticket</th>
+                <th scope="col" class="right">Principal</th>
+                <th scope="col"  class="right">Net Proceed</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr >
+                  <td class="center"><a href="javascript:void(0);" (click)="pay(loan.Id)"><i class="fa fa-credit-card"></i></a></td>
+                  <td class="center"><a href="javascript:void(0);" (click)="pay(loan.Id)"><i class="fa fa-credit-card-alt"></i></a></td>
+                  <td></td>
+                  <td class="center">&nbsp;</td>
+                  <td class="center">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td class="center">&nbsp;</td>
+                  <td class="right">&nbsp;</td>
+                  <td class="center"  class="right">&nbsp;</td>
+                </tr>
+            </tbody>  
+        </table> 
+    </div>
+  </div>
+
+
+</div>

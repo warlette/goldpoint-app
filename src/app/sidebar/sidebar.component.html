@@ -1,0 +1,84 @@
+<div class="container">
+  <a class="dropdown-item" href="#/home" [ngClass]="{'active': (trans === 0)}" (click)="setClass(0)">
+    <i class="fa fa-home"></i>&nbsp;&nbsp;
+    <span class="side-menu">Home</span>
+  </a>
+  <div class="dropdown-divider"></div>
+  <a class="dropdown-item" href="javascript:void(0);" (click)="isTrans = !isTrans; setClass(10)"  [ngClass]="{'active': (trans === 10)}">
+    <i class="fa fa-tasks"></i>&nbsp;&nbsp;
+    <span class="side-menu">Transactions</span>
+  </a>
+  <a class="dropdown-item trans" href="#/newcustomer" *ngIf="isTrans" [ngClass]="{'active': (trans === 11)}" (click)="setClass(11)">
+    <i class="fa fa-address-card"></i>&nbsp;&nbsp;
+    <span class="side-menu">New Customer / Pledge</span>
+  </a>
+  <a class="dropdown-item  trans" href="#/pledge" *ngIf="isTrans" [ngClass]="{'active': (trans === 12)}" (click)="setClass(12)">
+    <i class="fa fa-clipboard"></i>&nbsp;&nbsp;
+    <span class="side-menu">New Pledge</span>
+  </a>
+  <a class="dropdown-item  trans" href="#/redeem" *ngIf="isTrans" [ngClass]="{'active': (trans === 13)}" (click)="setClass(13)">
+    <i class="fa fa-credit-card"></i>&nbsp;&nbsp;
+    <span class="side-menu">Redeem</span>
+  </a>
+  <a class="dropdown-item  trans" href="#/renew" *ngIf="isTrans" [ngClass]="{'active': (trans === 14)}" (click)="setClass(14)">
+    <i class="fa fa-credit-card-alt"></i>&nbsp;&nbsp;
+    <span class="side-menu">Renew</span>
+  </a>
+  <a class="dropdown-item  trans" href="#/sell" *ngIf="isTrans" [ngClass]="{'active': (trans === 15)}" (click)="setClass(15)">
+    <i class="fa fa-tags"></i>&nbsp;&nbsp;
+    <span class="side-menu">Sell</span>
+  </a>
+  <div class="dropdown-divider"></div>
+  <a class="dropdown-item" href="javascript:void(0);" (click)="isLists = !isLists; setClass(20)"  [ngClass]="{'active': (trans === 20)}">
+    <i class="fa fa-list"></i>&nbsp;&nbsp;
+    <span class="side-menu">Lists</span>
+  </a>
+  <a class="dropdown-item trans" href="#/customers" *ngIf="isLists" [ngClass]="{'active': (trans === 21)}" (click)="setClass(21)">
+    <i class="fa fa-angle-double-right"></i>&nbsp;&nbsp;
+    <span class="side-menu">Customers</span>
+  </a>
+  <a class="dropdown-item  trans" href="#/pledges" *ngIf="isLists" [ngClass]="{'active': (trans === 22)}" (click)="setClass(22)">
+    <i class="fa fa-angle-double-right"></i>&nbsp;&nbsp;
+    <span class="side-menu">Pledges</span>
+  </a>
+  <a class="dropdown-item  trans" href="#/redeemed" *ngIf="isLists" [ngClass]="{'active': (trans === 23)}" (click)="setClass(23)">
+    <i class="fa fa-angle-double-right"></i>&nbsp;&nbsp;
+    <span class="side-menu">Redeem</span>
+  </a>
+  <a class="dropdown-item  trans" href="#/renewed" *ngIf="isLists" [ngClass]="{'active': (trans === 24)}" (click)="setClass(24)">
+    <i class="fa fa-angle-double-right"></i>&nbsp;&nbsp;
+    <span class="side-menu">Renew</span>
+  </a>
+  <a class="dropdown-item  trans" href="#/repossessed" *ngIf="isLists" [ngClass]="{'active': (trans === 25)}" (click)="setClass(25)">
+    <i class="fa fa-angle-double-right"></i>&nbsp;&nbsp;
+    <span class="side-menu">Repossess</span>
+  </a>
+  <a class="dropdown-item  trans" href="#/sold" *ngIf="isLists" [ngClass]="{'active': (trans === 26)}" (click)="setClass(26)">
+    <i class="fa fa-angle-double-right"></i>&nbsp;&nbsp;
+    <span class="side-menu">Sold</span>
+  </a>
+  <a class="dropdown-item  trans" href="#/funds" *ngIf="isLists" [ngClass]="{'active': (trans === 27)}" (click)="setClass(27)">
+    <i class="fa fa-angle-double-right"></i>&nbsp;&nbsp;
+    <span class="side-menu">Funds / Expenses</span>
+  </a>
+  <div class="dropdown-divider"></div>
+  <a class="dropdown-item" href="javascript:void(0);" (click)="isCollection = !isCollection; setClass(30)"  [ngClass]="{'active': (trans === 30)}">
+    <i class="fa fa-list"></i>&nbsp;&nbsp;
+    <span class="side-menu">Miscellaneous</span>
+  </a>
+  <a class="dropdown-item  trans" href="#/addfund" *ngIf="isCollection" [ngClass]="{'active': (trans === 31)}" (click)="setClass(31)">
+    <i class="fa fa-plus"></i>&nbsp;&nbsp;
+    <span class="side-menu">Add Fund</span>
+  </a>
+  <a class="dropdown-item  trans" href="#/withdrawfund" *ngIf="isCollection" [ngClass]="{'active': (trans === 32)}" (click)="setClass(32)">
+    <i class="fa fa-minus"></i>&nbsp;&nbsp;
+    <span class="side-menu">Withdraw Fund</span>
+  </a>
+  <div class="dropdown-divider"></div>
+</div>
+<div class="container" style="position: absolute; bottom: 0; display: none;">
+  <div class="dropdown-divider"></div>
+  <a class="dropdown-item" href="#">&nbsp;
+    <i class="fa fa-chevron-left" style="position: absolute; right: 15px; top: 15px;"></i>
+  </a>
+</div>

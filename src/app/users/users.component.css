@@ -1,0 +1,9 @@
+ngx-smart-modal {
+    height: 620px;;
+}
+.nsm-dialog.nsm-dialog-open {
+    min-height: 620px;
+}
+div.alert {
+    margin-left: 170px;
+}

@@ -1,0 +1,306 @@
+/* You can add global styles to this file, and also import other style files */
+@import "./assets/css/bootstrap.min.css";
+@import "./assets/css/custom.min.css";
+@import "~ngx-smart-modal/ngx-smart-modal.css";
+
+.btn {
+    margin-right: 5px;
+}
+.col-sm-12{
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+  .breadcrumb {
+    border-radius: 0px;
+    border-left: none;
+    border-right: none;
+  }
+  div.card{
+    margin-left: 25px;
+    margin-right: 25px;
+  }
+  
+  .ng-valid[required], .ng-valid.required  {
+    border-left: 3px solid #42A948; /* green */
+  }
+  
+  .ng-invalid:not(form)  {
+    border-left: 3px solid #a94442; /* red */
+  }
+  
+  .alert-danger {
+    padding: 0;
+    color: red !important;
+    border: none;
+    background: transparent !important;
+    font-style: italic;
+  }
+  
+  .content {
+    padding-right: 15px;
+  }
+  
+  @media (max-width: 576px){
+    .content {
+      padding-right: 5px;
+    }
+    div.card{
+      margin-left: 25px;
+      margin-right: 0px;
+    }
+  }
+  
+.table-stripe > tbody > tr:nth-child(2n+1) > td, .table-striped > tbody > tr:nth-child(2n+1) > th {
+    background-color: rgba(0,0,0,0.075);
+ }
+
+ .right {
+     text-align: right;
+ }
+
+ .center {
+     text-align: center;
+ }
+  
+ .panel-dark {
+    border-color: #4e5154;
+}
+
+.panel-dark .panel-heading {
+    background-color: #4e5154;
+    color: #fff;
+}
+
+.panel-success-alt {
+    border-color: #4cae4c;
+}
+
+.panel-success-alt .panel-heading {
+    background-color: #5cb85c;
+    color: #fff;
+}
+
+.panel-info-alt {
+    border-color: #46b8da;
+}
+
+.panel-info-alt .panel-heading {
+    background-color: #5bc0de;
+    color: #fff;
+}
+
+.panel-warning-alt {
+    border-color: #eea236;
+}
+
+.panel-warning-alt .panel-heading {
+    background-color: #f0ad4e;
+    color: #fff;
+}
+
+.panel-danger-alt {
+    border-color: #d43f3a;
+}
+
+.panel-danger-alt .panel-heading {
+    background-color: #d9534f;
+    color: #fff;
+}
+
+.panel-repossess-alt .panel-heading {
+    background-color: #2d31ed;
+    color: #fff;
+}
+
+.panel-sold-alt .panel-heading {
+    background-color: #51ce09;
+    color: #fff;
+}
+
+.panel-success-alt .panel-heading p a,
+.panel-info-alt .panel-heading p a,
+.panel-warning-alt .panel-heading p a,
+.panel-danger-alt .panel-heading p a,
+.panel-dark .panel-heading p a {
+    color: #fff;
+}
+
+.panel-success-alt .panel-heading .panel-btns a,
+.panel-info-alt .panel-heading .panel-btns a,
+.panel-warning-alt .panel-heading .panel-btns a,
+.panel-danger-alt .panel-heading .panel-btns a,
+.panel-dark .panel-heading .panel-btns a {
+    border-color: #fff;
+    color: #fff;
+    opacity: 0.75;
+}
+
+.panel-primary-head .panel-heading,
+.panel-success-head .panel-heading,
+.panel-warning-head .panel-heading,
+.panel-danger-head .panel-heading,
+.panel-info-head .panel-heading,
+.panel-dark-head .panel-heading {
+    border-bottom: 0;
+    color: #fff;
+}
+
+.panel-primary-head .panel-heading p,
+.panel-success-head .panel-heading p,
+.panel-warning-head .panel-heading p,
+.panel-danger-head .panel-heading p,
+.panel-info-head .panel-heading p,
+.panel-dark-head .panel-heading p {
+    opacity: 0.75;    
+}
+
+.panel-primary-head .panel-body,
+.panel-success-head .panel-body,
+.panel-warning-head .panel-body,
+.panel-danger-head .panel-body,
+.panel-info-head .panel-body,
+.panel-dark-head .panel-body {
+    border: 1px solid #ddd;
+    border-top: 0;
+}
+
+.panel-primary-head .panel-footer,
+.panel-success-head .panel-footer,
+.panel-warning-head .panel-footer,
+.panel-danger-head .panel-footer,
+.panel-info-head .panel-footer,
+.panel-dark-head .panel-footer {
+    border: 1px solid #ddd;
+    border-top: 0;
+}
+
+.panel-primary-head .panel-heading {
+    background-color: #428bca;
+}
+
+.panel-success-head .panel-heading {
+    background-color: #5cb85c;
+}
+
+.panel-warning-head .panel-heading {
+    background-color: #f0ad4e;
+}
+
+.panel-danger-head .panel-heading {
+    background-color: #d9534f;
+}
+
+.panel-info-head .panel-heading {
+    background-color: #5bc0de;   
+}
+
+.panel-dark-head .panel-heading {
+    background-color: #4e5154;
+}
+
+.panel-primary-head .panel-heading p a,
+.panel-success-head .panel-heading p a,
+.panel-info-head .panel-heading p a,
+.panel-warning-head .panel-heading p a,
+.panel-danger-head .panel-heading p a,
+.panel-dark-head .panel-heading p a {
+    color: #fff;
+}
+
+.panel-primary-head .panel-heading .panel-btns a,
+.panel-success-head .panel-heading .panel-btns a,
+.panel-info-head .panel-heading .panel-btns a,
+.panel-warning-head .panel-heading .panel-btns a,
+.panel-danger-head .panel-heading .panel-btns a,
+.panel-dark-head .panel-heading .panel-btns a {
+    border-color: #fff;
+    color: #fff;
+    opacity: 0.75;
+}
+
+.panel-metro,
+.panel-metro .panel-heading,
+.panel-metro .panel-footer {
+    -moz-border-radius: 0;
+    -webkit-border-radius: 0;
+    border-radius: 0;
+}
+
+.panel-heading {
+    padding: 18px 20px 20px 20px;
+    position: relative;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+.panel-heading, .panel-footer {
+    background: #f7f7f7;
+    border-color: #ddd;
+}
+.panel-icon {
+    background: rgba(255,255,255,0.9);
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    width: 60px;
+    height: 60px;
+    float: left;
+    margin-right: 15px;
+}
+.panel-icon .fa {
+    color: #000;
+    font-size: 36px;
+    padding: 12px 0 0 19px;
+}
+.panel-icon .img {
+    padding: 10px 0 0 10px !important;
+}
+.row-stat hr {
+    opacity: 0.3;
+    margin: 15px 0 0 0;
+    border-width: 2px;
+}
+.row-stat .md-title {
+    opacity: 0.6;
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+.nomargin {
+    margin: 0;
+}
+.md-title {
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: normal;
+}
+.row-stat .panel-icon img {
+    width: 40px;
+    height: auto;
+}
+.img {
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.panel-icon .fa-users {
+    padding: 12px 0 0 10px;
+}
+
+.search-nav {
+    position: relative;
+    height: 50px;
+}
+
+.search {
+    position: absolute;
+    right: 10px;
+}
+
+  app-sidebar {
+    overflow-y: scroll;
+  }
+  
+  
