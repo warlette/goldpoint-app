@@ -12,13 +12,13 @@
         <form #RenewForm="ngForm" class="col-sm-12">
             <fieldset>
                 <div class="form-group">
-                  <label for="clientId">Pawn ticket number: </label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <input type="text" class="form-control col-sm-8" id="clientId" style="display: inline;"
-                 required [(ngModel)]="iRenew.Id" name="clientId" #clientId="ngModel" (change)="search(iRenew)">
-                 <a class="btn btn-success col-sm-1" style="margin-top: -5px;" (click)="search(iRenew.Id)">
+                  <label for="pawnticket">Pawn ticket number: </label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <input type="text" class="form-control col-sm-8" id="pawnticket" style="display: inline;"
+                 required [(ngModel)]="Pledge.pawnticket" name="pawnticket" #pawnticket="ngModel" (change)="search()">
+                 <a class="btn btn-success col-sm-1" style="margin-top: -5px;" (click)="search()">
                    <i class="fa fa-search"></i>
                  </a>
-                  <div [hidden]="clientId.valid || clientId.pristine" class="alert alert-danger">
+                  <div [hidden]="pawnticket.valid || pawnticket.pristine" class="alert alert-danger">
                    Pawn ticket required!
                   </div>
               </div>
@@ -27,29 +27,39 @@
                   <hr class="my-4" style="margin: 0px !important">
                 </div>
                 <div class="form-group">
-                  <label for="name">Name: </label>
-                  <input type="text" class="form-control" id="name" disabled
-                 required [(ngModel)]="iRenew.Name" name="name" #name="ngModel">
+                  <label for="firstname">First Name: </label>
+                  <input type="text" class="form-control" id="firstname" disabled
+                  [(ngModel)]="Customer.firstname" name="firstname" #firstname="ngModel">
+                </div>
+                <div class="form-group">
+                  <label for="middlename">Middle Name: </label>
+                  <input type="text" class="form-control" id="middlename" disabled
+                  [(ngModel)]="Customer.middlename" name="middlename" #middlename="ngModel">
+                </div>
+                <div class="form-group">
+                  <label for="lastname">Last Name: </label>
+                  <input type="text" class="form-control" id="lastname" disabled
+                  [(ngModel)]="Customer.lastname" name="lastname" #lastname="ngModel">
                 </div>
                 <div class="form-group">
                   <label for="address">Address: </label>
                   <input type="text" class="form-control" id="address" disabled
-                        required [(ngModel)]="iRenew.Address" name="address" #address="ngModel">
+                    [(ngModel)]="Customer.Address" name="address" #address="ngModel">
                 </div>
                 <div class="form-group">
                   <label for="bd">Birthdate: </label>
                   <input type="text" class="form-control" id="bd" disabled
-                        required [(ngModel)]="iRenew.Birthdate" name="db" #db="ngModel">
+                    [(ngModel)]="Customer.Birthdate" name="db" #db="ngModel">
                 </div>
                 <div class="form-group">
                   <label for="id">Id Presented: </label>
                   <input type="text" class="form-control" id="id" disabled
-                        required [(ngModel)]="iRenew.IdPresented" name="id" #id="ngModel">
+                    [(ngModel)]="Customer.IdPresented" name="id" #id="ngModel">
                 </div>
                 <div class="form-group">
                   <label for="cn">Contact Number: </label>
                   <input type="text" class="form-control" id="cn" disabled
-                        required [(ngModel)]="iRenew.Contact" name="cn" #cn="ngModel">
+                    [(ngModel)]="Customer.Contact" name="cn" #cn="ngModel">
                 </div>
                 <div class="form-group">
                   <legend>Pledged Details</legend>
@@ -57,65 +67,73 @@
                 </div>
                 <div class="form-group">
                     <input type="checkbox" class="form-control" id="isgold" style="display: inline;" disabled
-                    required [(ngModel)]="iRenew.isgold" name="isgold" #isGold="ngModel" (change)="search(iRenew)">
+                    required [(ngModel)]="Pledge.isgold" name="isgold" #isgold="ngModel">
                     <label for="isgold">Is this Pledge for GOLD?</label>               
                 </div>
                 <div class="form-group">
                   <label for="pt">Pawn Ticket Number: </label>
                   <input type="text" class="form-control" id="pt" disabled
-                 required [(ngModel)]="iRenew.PTNumber" name="pt" #pt="ngModel">
+                  [(ngModel)]="Pledge.pawnticket" name="pt" #pt="ngModel">
                 </div>
                 <div class="form-group">
-                  <label for="dg">Date Granted: </label>
-                  <input type="text" class="form-control" id="dg" disabled
-                 required [(ngModel)]="iRenew.DateGranted" name="dg" #dg="ngModel">
+                  <label for="dateadded">Date Granted: </label>
+                  <input type="text" class="form-control" id="dateadded" disabled
+                  [(ngModel)]="Pledge.dateadded" name="dg" #dateadded="ngModel">
                 </div>
                 <div class="form-group">
-                  <label for="dm">Date of Maturity: </label>
-                  <input type="text" class="form-control" id="dm" disabled
-                 required [(ngModel)]="iRenew.DateMaturity" name="dm" #dm="ngModel">
+                  <label for="datemature">Date of Maturity: </label>
+                  <input type="text" class="form-control" id="datemature" disabled
+                  [(ngModel)]="Pledge.datemature" name="datemature" #datemature="ngModel">
                 </div>
                 <div class="form-group">
-                  <label for="de">Date of Expiry: </label>
-                  <input type="text" class="form-control" id="de" disabled
-                 required [(ngModel)]="iRenew.DateExpiry" name="de" #de="ngModel">
+                  <label for="dateexpire">Date of Expiry: </label>
+                  <input type="text" class="form-control" id="dateexpire" disabled
+                  [(ngModel)]="Pledge.dateexpire" name="dateexpire" #dateexpire="ngModel">
                 </div>
                 <div class="form-group">
-                  <label for="pawn">Pawn Description: </label>
-                  <textarea class="form-control" id="pawn" disabled
-                 required [(ngModel)]="iRenew.PawnDescription" name="pawn" #pawn="ngModel">
+                  <label for="description">Pawn Description: </label>
+                  <textarea class="form-control" id="description" disabled
+                  [(ngModel)]="Pledge.description" name="description" #description="ngModel">
                  </textarea>
                 </div>
                 <div class="form-group">
-                  <label for="principal">Principal: </label>
-                  <input type="text" class="form-control" id="principal" disabled
-                 required [(ngModel)]="iRenew.Principal" name="principal" #principal="ngModel">
+                  <label for="amount">Principal: </label>
+                  <input type="text" class="form-control" id="amount" disabled
+                  [(ngModel)]="Pledge.Principal" name="amount" #amount="ngModel">
                 </div>
                 <div class="form-group">
                   <label for="interest">Interest Rate (%): </label>
-                  <select class="form-control"  [(ngModel)]="iRenew.Interest" disabled name="interest" id="interest">
+                  <select class="form-control"  [(ngModel)]="Pledge.interest" disabled name="interest" id="interest">
                       <option [ngValue]="1" selected>1%</option>
                       <option value="5">5%</option>
                       <option value="10">10%</option>
                     </select>
                 </div>
                 <div class="form-group">
-                  <label for="sc">Penalty: </label>
-                  <input type="text" class="form-control" id="sc" disabled
-                 required [(ngModel)]="iRenew.ServiceCharge" name="sc" #sc="ngModel">
+                  <label for="penalty">Penalty: </label>
+                  <input type="text" class="form-control" id="penalty" disabled
+                  [(ngModel)]="Pledge.penalty" name="penalty" #penalty="ngModel">
                 </div>
                 <div class="form-group">
-                  <label for="partial">Partial Payment: </label>
-                  <input type="text" class="form-control" id="partial" 
-                 [(ngModel)]="iRenew.Partial" name="partial">
+                  <label for="servicecharge">Service Charge: </label>
+                  <input type="text" class="form-control" id="servicecharge" 
+                  required [(ngModel)]="Pledge.servicecharge" name="servicecharge"  #servicecharge="ngModel">
+                </div>
+                <div [hidden]="servicecharge.valid || servicecharge.pristine" class="alert alert-danger">
+                 Pawn ticket required!
                 </div>
                 <div class="form-group">
-                  <label for="np">Total Amount To Be Paid: </label>
-                  <input type="text" class="form-control" id="np"  disabled
-                 [(ngModel)]="iRenew.Total" name="np">
+                  <label for="amountprepaid">Partial Payment: </label>
+                  <input type="text" class="form-control" id="amountprepaid" 
+                 [(ngModel)]="Pledge.amountprepaid" name="amountprepaid">
+                </div>
+                <div class="form-group">
+                  <label for="amounttotal">Total Amount To Be Paid: </label>
+                  <input type="text" class="form-control" id="amounttotal"  disabled
+                 [(ngModel)]="Pledge.amounttotal" name="amounttotal">
                 </div>
                 <hr class="my-4">
-                <button type="submit" class="btn btn-primary" (click)="save(true, iRenew)">Submit</button>
+                <button type="submit" class="btn btn-primary" (click)="save(true, Pledge)">Submit</button>
                 <button type="submit" class="btn btn-secondary" (click)="cancel()">Cancel</button>
                 <button type="submit" class="btn btn-warning" (click)="clear()">Clear</button>
               </fieldset>

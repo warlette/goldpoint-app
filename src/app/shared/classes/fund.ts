@@ -1,9 +1,12 @@
-export class iFund {
+export class Fund {
 
   constructor(
-    public Id: number,
-    public Amount: number,
-    public Remarks: string
+    public id: number,
+    public amount: number,
+    public remarks: string,
+    public type: string,
+    public dateadded: string,
+    public pawnticket: string
   ) { }
 
 }

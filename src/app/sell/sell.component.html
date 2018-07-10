@@ -1,3 +1,130 @@
-<p>
-  sell works!
-</p>
+<div class="row breadcrumb-fixed">
+  <div class="col-sm-12">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item active"><a href="#/sold">Sold</a></li>
+    </ol>
+  </div>
+</div>
+<div class="row col-sm-12 content">
+<div class="card border-light col-sm-12" >
+    <div class="card-header"><h2>Sell</h2></div>
+    <div class="card-body">
+        <form #RenewForm="ngForm" class="col-sm-12">
+            <fieldset>
+                <div class="form-group">
+                  <label for="pawnticket">Pawn ticket number: </label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <input type="text" class="form-control col-sm-8" id="pawnticket" style="display: inline;"
+                 required [(ngModel)]="Pledge.pawnticket" name="pawnticket" #pawnticket="ngModel" (change)="search()">
+                 <a class="btn btn-success col-sm-1" style="margin-top: -5px;" (click)="search()">
+                   <i class="fa fa-search"></i>
+                 </a>
+                  <div [hidden]="pawnticket.valid || pawnticket.pristine" class="alert alert-danger">
+                   Pawn ticket required!
+                  </div>
+              </div>
+                <div class="form-group">
+                  <legend>Personal Information</legend>
+                  <hr class="my-4" style="margin: 0px !important">
+                </div>
+                <div class="form-group">
+                  <label for="firstname">First Name: </label>
+                  <input type="text" class="form-control" id="firstname" disabled
+                  [(ngModel)]="Customer.firstname" name="firstname" #firstname="ngModel">
+                </div>
+                <div class="form-group">
+                  <label for="middlename">Middle Name: </label>
+                  <input type="text" class="form-control" id="middlename" disabled
+                  [(ngModel)]="Customer.middlename" name="middlename" #middlename="ngModel">
+                </div>
+                <div class="form-group">
+                  <label for="lastname">Last Name: </label>
+                  <input type="text" class="form-control" id="lastname" disabled
+                  [(ngModel)]="Customer.lastname" name="lastname" #lastname="ngModel">
+                </div>
+                <div class="form-group">
+                  <label for="address">Address: </label>
+                  <input type="text" class="form-control" id="address" disabled
+                    [(ngModel)]="Customer.Address" name="address" #address="ngModel">
+                </div>
+                <div class="form-group">
+                  <label for="bd">Birthdate: </label>
+                  <input type="text" class="form-control" id="bd" disabled
+                    [(ngModel)]="Customer.Birthdate" name="db" #db="ngModel">
+                </div>
+                <div class="form-group">
+                  <label for="id">Id Presented: </label>
+                  <input type="text" class="form-control" id="id" disabled
+                    [(ngModel)]="Customer.IdPresented" name="id" #id="ngModel">
+                </div>
+                <div class="form-group">
+                  <label for="cn">Contact Number: </label>
+                  <input type="text" class="form-control" id="cn" disabled
+                    [(ngModel)]="Customer.Contact" name="cn" #cn="ngModel">
+                </div>
+                <div class="form-group">
+                  <legend>Pledged Details</legend>
+                  <hr class="my-4" style="margin: 0px !important">
+                </div>
+                <div class="form-group">
+                    <input type="checkbox" class="form-control" id="isgold" style="display: inline;" disabled
+                    required [(ngModel)]="Pledge.isgold" name="isgold" #isgold="ngModel">
+                    <label for="isgold">Is this Pledge for GOLD?</label>               
+                </div>
+                <div class="form-group">
+                  <label for="pt">Pawn Ticket Number: </label>
+                  <input type="text" class="form-control" id="pt" disabled
+                  [(ngModel)]="Pledge.pawnticket" name="pt" #pt="ngModel">
+                </div>
+                <div class="form-group">
+                  <label for="dateadded">Date Granted: </label>
+                  <input type="text" class="form-control" id="dateadded" disabled
+                  [(ngModel)]="Pledge.dateadded" name="dg" #dateadded="ngModel">
+                </div>
+                <div class="form-group">
+                  <label for="datemature">Date of Maturity: </label>
+                  <input type="text" class="form-control" id="datemature" disabled
+                  [(ngModel)]="Pledge.datemature" name="datemature" #datemature="ngModel">
+                </div>
+                <div class="form-group">
+                  <label for="dateexpire">Date of Expiry: </label>
+                  <input type="text" class="form-control" id="dateexpire" disabled
+                  [(ngModel)]="Pledge.dateexpire" name="dateexpire" #dateexpire="ngModel">
+                </div>
+                <div class="form-group">
+                  <label for="description">Pawn Description: </label>
+                  <textarea class="form-control" id="description" disabled
+                  [(ngModel)]="Pledge.description" name="description" #description="ngModel">
+                 </textarea>
+                </div>
+                <div class="form-group">
+                  <label for="amount">Principal: </label>
+                  <input type="text" class="form-control" id="amount" disabled
+                  [(ngModel)]="Pledge.Principal" name="amount" #amount="ngModel">
+                </div>
+                <div class="form-group">
+                  <label for="interest">Interest Rate (%): </label>
+                  <select class="form-control"  [(ngModel)]="Pledge.interest" disabled name="interest" id="interest">
+                      <option [ngValue]="1" selected>1%</option>
+                      <option value="5">5%</option>
+                      <option value="10">10%</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                  <label for="amountsold">Amount Sold: </label>
+                  <input type="text" class="form-control" id="amountsold" 
+                  required [(ngModel)]="Pledge.amountsold" name="amountsold"  #amountsold="ngModel">
+                </div>
+                <div [hidden]="amountsold.valid || amountsold.pristine" class="alert alert-danger">
+                 Pawn ticket required!
+                </div>
+                <hr class="my-4">
+                <button type="submit" class="btn btn-primary" (click)="save(true, Pledge)">Submit</button>
+                <button type="submit" class="btn btn-secondary" (click)="cancel()">Cancel</button>
+                <button type="submit" class="btn btn-warning" (click)="clear()">Clear</button>
+              </fieldset>
+          </form>
+    </div>
+  </div>
+
+
+</div>

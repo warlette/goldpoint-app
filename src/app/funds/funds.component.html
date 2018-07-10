@@ -2,7 +2,8 @@
 <div class="row breadcrumb-fixed">
   <div class="col-sm-12">
     <ol class="breadcrumb">
-      <li class="breadcrumb-item active"><a href="#/newpayment">New Payment</a></li>
+      <li class="breadcrumb-item active"><a href="#/addfund">Add Fund</a></li>
+      <li class="breadcrumb-item active"><a href="#/withdrawfund">Withdraw Fund</a></li>
     </ol>
   </div>
 </div>
@@ -14,21 +15,26 @@
             Search Type:&nbsp;
               <select class="form-control"  [(ngModel)]="term" name="term" id="term">
                 <option [ngValue]="undefined" selected>View All</option>
-                <option value="Date">Date</option>
-                <option value="Amount">Amount</option>
-                <option value="Ticket">Pawn Ticket</option>
-                <option value="Description">Description / Remarks</option>
+                <option value="dateadded">Date</option>
+                <option value="amount">Amount</option>
+                <option value="type">Type</option>
+                <option value="pawnticket">Pawn Ticket</option>
+                <option value="remarks">Description / Remarks</option>
               </select>&nbsp;&nbsp;
               <input class="form-control mr-sm-2" type="text" placeholder="Search" [(ngModel)]="searchee" name="searchee" id="searchee">
               &nbsp;&nbsp;&nbsp;&nbsp;
               Order by:&nbsp;
-              <select class="form-control"  [(ngModel)]="sortBy" name="sortBy" id="sortBy">
+              <select class="form-control"  [(ngModel)]="sortBy" name="sortBy" id="sortBy" (change)="reverse=reverse">
                 <option [ngValue]="undefined" selected>Sort</option>
-                <option value="Date">Date</option>
-                <option value="Amount">Amount</option>
-                <option value="Ticket">Pawn Ticket</option>
-                <option value="Description">Description / Remarks</option>
-              </select>     
+                <option value="dateadded">Date</option>
+                <option value="amount">Amount</option>
+                <option value="type">Type</option>
+                <option value="pawnticket">Pawn Ticket</option>
+                <option value="remarks">Description / Remarks</option>
+              </select>&nbsp;&nbsp;
+              <a href="javascript:void(0);" (click)="reverse=!reverse;sortBy=sortBy;" style="font-size: 25px;color:antiquewhite;">
+                <i class="fa fa-sort"></i>
+              </a>
           </form>
         </div>
     </nav>
@@ -44,16 +50,18 @@
               <tr>
                 <th scope="col">Date</th>
                 <th scope="col" class="right">Amount</th>
+                <th scope="col">Type</th>
                 <th scope="col">Pawn Ticket</th>
                 <th scope="col">Description / Remarks</th>
               </tr>
             </thead>
             <tbody>
-                <tr>
-                  <td>&nbsp;</td>
-                  <td class="right">&nbsp;</td>
-                  <td>&nbsp;</td>
-                  <td>&nbsp;</td>
+                <tr *ngFor="let fund of Funds | orderBy:sortBy:reverse | searchfilter: term : searchee">
+                  <td>{{ fund.dateadded | date:'yyyy-MM-dd' }}</td>
+                  <td class="right">{{ fund.amount | number: '1.2-2' }}</td>
+                  <td>{{ fund.type }}</td>
+                  <td>{{ fund.pawnticket }}</td>
+                  <td>{{ fund.remarks }}</td>
                 </tr>
             </tbody>  
         </table> 

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgProgressModule, NgProgress } from '@ngx-progressbar/core';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +9,10 @@ import { NgProgressModule, NgProgress } from '@ngx-progressbar/core';
 })
 export class AppComponent implements OnInit {
   title = 'app';
-  constructor(public progress: NgProgress) {
+  constructor(
+    public progress: NgProgress,
+    private cookieService: CookieService
+  ) {
     this.startLoading();
     
 
@@ -33,6 +37,7 @@ export class AppComponent implements OnInit {
     setTimeout(function() {
       self.completeLoading();
     }, 1000);
+    this.cookieService.set('userId', "1"); 
   }
 
 }

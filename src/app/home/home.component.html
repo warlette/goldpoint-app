@@ -19,17 +19,17 @@
                       <div class="panel-icon"><i class="img"><img src="../../assets/images/peso.svg"/></i></div>
                       <div class="media-body">
                           <h5 class="md-title nomargin">Current Funds</h5>
-                          <h1 class="mt5">{{ 12 | number : '1.2-2' }}</h1>
+                          <h1 class="mt5">{{ Dashboard.currentfunds | number : '1.2-2' }}</h1>
                       </div>
                       <hr>
                       <div class="clearfix mt20">
                           <div class="pull-left">
                               <h5 class="md-title nomargin">Added Funds</h5>
-                              <h4 class="nomargin">{{ 12 | number : '1.2-2' }}</h4>
+                              <h4 class="nomargin">{{ Dashboard.addedfunds | number : '1.2-2' }}</h4>
                           </div>
                           <div class="pull-right">
                               <h5 class="md-title nomargin">Expenses</h5>
-                              <h4 class="nomargin">{{ 12 | number : '1.2-2' }}</h4>
+                              <h4 class="nomargin">{{ Dashboard.withdrawnfunds | number : '1.2-2' }}</h4>
                           </div>
                       </div>
                   </div>

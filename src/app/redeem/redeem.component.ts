@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { iRedeem } from './../shared/classes/redeem';
+import { Customer } from './../shared/classes/customer';
+import { Pledge } from './../shared/classes/pledge';
+import { common } from './../shared/services/common';
 
 @Component({
   selector: 'app-redeem',
@@ -7,12 +9,10 @@ import { iRedeem } from './../shared/classes/redeem';
   styleUrls: ['./redeem.component.css']
 })
 export class RedeemComponent implements OnInit {
-  DateGranted = new Date();
-  // DateMaturity = this.DateGranted.addMonths(1);
-  // DateExpiry = this.DateGranted.addMonths(3);
 
-  iRedeem = new iRedeem(1, new Date().toLocaleDateString(), new Date().toLocaleDateString(),
-  new Date().toLocaleDateString(), null, null, null, null, null, null, null, 0, 0, 5, 0);
+  Pledge = new Pledge(null,null,null,null,null,null,null,null,null,null,
+    null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null);
+  Customer = new Customer(null,null,null,null,null,null,null,null,null,null,null);
 
   constructor() {
   }
@@ -21,13 +21,12 @@ export class RedeemComponent implements OnInit {
 
   }
 
-  public save(isValid: boolean, f: iRedeem) {
-    console.log(f);
+  public save() {
+    
   }
 
   public clear() {
-    this.iRedeem = new iRedeem(null, new Date().toLocaleDateString(), new Date().toLocaleDateString(),
-    new Date().toLocaleDateString(), null, null, null, null, null, null, null, 0, 0, 5, 0);
+    
   }
 
 }

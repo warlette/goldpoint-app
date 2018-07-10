@@ -1,5 +1,7 @@
 import { Component, OnInit, Injectable, NgModule } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { environment } from './../shared/const/environment';
+import { Dashboard } from './../shared/classes/dashboard';
 
 @Component({
   selector: 'app-home',
@@ -9,18 +11,26 @@ import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class HomeComponent implements OnInit {
-  users:  any;
+  
+  Dashboard = new Dashboard(null, null, null);
 
   constructor(
     private http: HttpClient
   ) {
-    //this.http.get('https://jsonplaceholder.typicode.com/posts/1')
-    // this.http.get('http://localhost:3000/users')
-    // .subscribe(post => this.users = post);
+    this.http.get(environment.baseUrl + '/dashboard')
+    .subscribe((result: any) => {
+      result.forEach(post => {
+        this.Dashboard = new Dashboard(
+          post.addedfunds,
+          post.withdrawnfunds,
+          post.currentfunds
+        );
+      });
+    });
    }
 
   ngOnInit() {
-    console.log(this.users);
+    
   }
 
 }

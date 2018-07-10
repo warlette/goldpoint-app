@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { environment } from './../shared/const/environment';
 import { CookieService } from 'ngx-cookie-service';
-import { iFund } from './../shared/classes/fund';
+import { Fund } from './../shared/classes/fund';
+import { environment } from './../shared/const/environment';
+import { common } from './../shared/services/common';
 
 @Component({
   selector: 'app-withdraw-fund',
@@ -11,7 +12,7 @@ import { iFund } from './../shared/classes/fund';
 })
 export class WithdrawFundComponent implements OnInit {
   
-  iFund = new iFund(null, null, null);
+  Fund = new Fund(null, null, null, null, null, null);
 
   constructor(
     private http: HttpClient,
@@ -22,13 +23,13 @@ export class WithdrawFundComponent implements OnInit {
   }
 
   public save() {
-    if ((this.iFund.Amount === null) || (this.iFund.Amount === 0) || (this.iFund.Amount === undefined)) {
+    if (!common.hasValue(this.Fund.amount)) {
       alert("Please input amount!");
       return;
     }
     var body = new HttpParams()
-      .set('amount', this.iFund.Amount.toString())
-      .set('remarks', this.iFund.Remarks)
+      .set('amount', this.Fund.amount.toString())
+      .set('remarks', this.Fund.remarks)
       .set('userid', this.cookieService.get('userId'));
 
     this.http.post(environment.baseUrl + '/fund/withdraw', 
@@ -47,7 +48,7 @@ export class WithdrawFundComponent implements OnInit {
   }
 
   public clear() {
-    this.iFund = new iFund(null, null, null);
+    this.Fund = new Fund(null, null, null, null, null, null);
   }
 
   public cancel() {

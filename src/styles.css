@@ -299,8 +299,10 @@
     right: 10px;
 }
 
-  app-sidebar {
+app-sidebar {
+    overflow-y: hidden;
+}
+
+app-sidebar:hover {
     overflow-y: scroll;
-  }
-  
-  
+}

@@ -14,7 +14,7 @@
               <div class="form-group">
                 <label for="amount">Amount: </label>
                 <input type="text" class="form-control" id="amount"
-                required [(ngModel)]="iFund.Amount" name="amount" #amount="ngModel">
+                required [(ngModel)]="Fund.amount" name="amount" #amount="ngModel">
                 <div [hidden]="amount.valid || amount.pristine" class="alert alert-danger">
                     Amount is required!
                   </div>
@@ -22,7 +22,7 @@
               <div class="form-group">
                 <label for="remarks">Remarks: </label>
                 <input type="text" class="form-control" id="remarks"
-                      [(ngModel)]="iFund.Remarks" name="lremarks">
+                      [(ngModel)]="Fund.remarks" name="lremarks">
               </div>
               <hr class="my-4">
               <button type="submit" class="btn btn-primary" (click)="save()">Submit</button>

@@ -11,7 +11,8 @@ import { common } from './../shared/services/common';
 })
 export class PledgeComponent implements OnInit {
 
-  Pledge = new Pledge(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null);
+  Pledge = new Pledge(null,null,null,null,null,null,null,null,null,null,
+    null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null);
   Customer = new Customer(null,null,null,null,null,null,null,null,null,null,null);
 
   constructor(

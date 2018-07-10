@@ -9,6 +9,8 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { NgxSmartModalModule } from 'ngx-smart-modal';
+import { SearchFilterPipe  } from './shared/pipes/searchfilter';
+import { OrderPipe  } from './shared/pipes/orderBy';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -31,6 +33,16 @@ import { AddFundComponent } from './add-fund/add-fund.component';
 import { WithdrawFundComponent } from './withdraw-fund/withdraw-fund.component';
 import { UsersComponent } from './users/users.component';
 import { UserRolesComponent } from './user-roles/user-roles.component';
+import { InterestsComponent } from './interests/interests.component';
+import { PrintSettingsComponent } from './print-settings/print-settings.component';
+import { FrequenciesComponent } from './frequencies/frequencies.component';
+import { SendingNoticeComponent } from './sending-notice/sending-notice.component';
+import { DailyComponent } from './daily/daily.component';
+import { MonthlyComponent } from './monthly/monthly.component';
+import { YearlyComponent } from './yearly/yearly.component';
+import { DateToDateComponent } from './date-to-date/date-to-date.component';
+import { HelpComponent } from './help/help.component';
+import { AboutComponent } from './about/about.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -50,6 +62,16 @@ const appRoutes: Routes = [
   { path: 'withdrawfund', component: WithdrawFundComponent },
   { path: 'users', component: UsersComponent },
   { path: 'userroles', component: UserRolesComponent },
+  { path: 'printsettings', component: PrintSettingsComponent },
+  { path: 'interests', component: InterestsComponent },
+  { path: 'frequencies', component: FrequenciesComponent },
+  { path: 'sendingnotice', component: SendingNoticeComponent },
+  { path: 'daily', component: DailyComponent },
+  { path: 'monthly', component: MonthlyComponent },
+  { path: 'yearly', component: YearlyComponent },
+  { path: 'datetodate', component: DateToDateComponent },
+  { path: 'help', component: HelpComponent },
+  { path: 'about', component: AboutComponent },
   { path: '',
     redirectTo: 'home',
     pathMatch: 'full'
@@ -79,7 +101,19 @@ const appRoutes: Routes = [
     AddFundComponent,
     WithdrawFundComponent,
     UsersComponent,
-    UserRolesComponent
+    UserRolesComponent,
+    InterestsComponent,
+    PrintSettingsComponent,
+    FrequenciesComponent,
+    SendingNoticeComponent,
+    DailyComponent,
+    MonthlyComponent,
+    YearlyComponent,
+    DateToDateComponent,
+    HelpComponent,
+    AboutComponent,
+    SearchFilterPipe,
+    OrderPipe
   ],
   imports: [
     RouterModule.forRoot(
