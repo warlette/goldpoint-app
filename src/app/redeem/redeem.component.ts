@@ -21,11 +21,19 @@ export class RedeemComponent implements OnInit {
 
   }
 
-  public save() {
-    
+  save() {
+     
   }
 
-  public clear() {
+  search() {
+  
+  }
+
+  clear() {
+    
+  }
+  
+  cancel() {
     
   }
 

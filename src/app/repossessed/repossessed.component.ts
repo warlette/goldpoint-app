@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+import { common } from './../shared/services/common';
 @Component({
   selector: 'app-repossessed',
   templateUrl: './repossessed.component.html',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RepossessedComponent implements OnInit {
 
+  Funds: any = [];
+  term: any;
+  searchee: any;
+  sortBy: any = "dateadded";
+  reverse: boolean = false;
+  
   constructor() { }
 
   ngOnInit() {
   }
+
+  print = common.print;
 
 }

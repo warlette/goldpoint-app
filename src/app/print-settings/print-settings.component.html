@@ -1,3 +1,99 @@
 <p>
-  print-settings works!
+  renewed works!
 </p>
+<div class="row breadcrumb-fixed">
+    <div class="col-sm-12">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item active"><a href="#/newpayment">New Payment</a></li>
+      </ol>
+    </div>
+  </div>
+  <div class="row col-sm-12 content">
+  <div class="card border-light col-sm-12" >
+      <div class="card-header"><h2>Print Settings</h2></div>
+      <div class="card-body">
+          <div class="row">             
+              <a href="javascript:void(0);" (click)="save()" style="position: absolute; right: 30px; font-size: 25px;">
+                <i class="fa fa-save"></i>
+              </a>
+            </div> <br/><br/>
+          <table class="table table-hover table-stripe" id="collections">
+              <thead>
+                <tr>
+                  <th scope="col">Print For</th>
+                  <th scope="col">Field Name</th>
+                  <th scope="col">Position</th>
+                  <th scope="col">Width</th>
+                  <th scope="col">Height</th>
+                  <th scope="col">Left</th>
+                  <th scope="col">Top</th>
+                  <th scope="col">Font Family</th>
+                  <th scope="col">Font Size</th>
+                  <th scope="col">Font Weight</th>
+                  <th scope="col">Font Style</th>
+                  <th scope="col">Text Decoration</th>
+                  <th scope="col">Text Transform</th>
+                  <th scope="col">Color</th>
+                </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let fld of printsettings">
+                    <td>{{ fld.printfor }}</td>
+                    <td>{{ fld.fieldname }}</td>
+                    <td>
+                      <input type="text" class="form-control" style="width: 150px;" id="remarks"
+                      [(ngModel)]="fld.position" name="position" #position="ngModel">
+                    </td>
+                    <td>
+                      <input type="text" class="form-control" style="width: 150px;" id="remarks"
+                      [(ngModel)]="fld.width" name="width" #width="ngModel">
+                    </td>
+                    <td>
+                      <input type="text" class="form-control" style="width: 150px;" id="remarks"
+                      [(ngModel)]="fld.height" name="height" #height="ngModel">
+                    </td>
+                    <td>
+                      <input type="text" class="form-control" style="width: 150px;" id="remarks"
+                      [(ngModel)]="fld.positionx" name="positionx" #positionx="ngModel">
+                    </td>
+                    <td>
+                      <input type="text" class="form-control" style="width: 150px;" id="remarks"
+                      [(ngModel)]="fld.positiony" name="positiony" #positiony="ngModel">
+                    </td>
+                    <td>
+                      <input type="text" class="form-control" style="width: 150px;" id="remarks"
+                      [(ngModel)]="fld.fontname" name="fontname" #fontname="ngModel">
+                    </td>
+                    <td>
+                      <input type="text" class="form-control" style="width: 150px;" id="remarks"
+                      [(ngModel)]="fld.fontsize" name="fontsize" #fontsize="ngModel">
+                    </td>
+                    <td>
+                      <input type="text" class="form-control" style="width: 150px;" id="remarks"
+                      [(ngModel)]="fld.fontweight" name="fontweight" #fontweight="ngModel">
+                    </td>
+                    <td>
+                      <input type="text" class="form-control" style="width: 150px;" id="remarks"
+                      [(ngModel)]="fld.fontstyle" name="fontstyle" #fontstyle="ngModel">
+                    </td>
+                    <td>
+                      <input type="text" class="form-control" style="width: 150px;" id="remarks"
+                      [(ngModel)]="fld.textdecoration" name="textdecoration" #textdecoration="ngModel">
+                    </td>
+                    <td>
+                      <input type="text" class="form-control" style="width: 150px;" id="remarks"
+                      [(ngModel)]="fld.texttransform" name="texttransform" #texttransform="ngModel">
+                    </td>
+                    <td>
+                      <input type="text" class="form-control" style="width: 150px;" id="remarks"
+                      [(ngModel)]="fld.color" name="color" #color="ngModel">
+                    </td>
+                  </tr>
+              </tbody>  
+          </table> 
+      </div>
+    </div>
+  
+  
+  </div>
+  

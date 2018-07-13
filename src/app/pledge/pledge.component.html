@@ -14,8 +14,8 @@
               <div class="form-group">
                 <label for="clientId">Customer Id: </label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <input type="text" class="form-control col-sm-9" id="clientId" style="display: inline;"
-               required [(ngModel)]="Customer.id" name="clientId" #clientId="ngModel" (change)="search(Pledge)">
-               <a class="btn btn-success col-sm-1" style="margin-top: -5px;" (click)="search(Pledge.Id)">
+               required [(ngModel)]="Customer.id" name="clientId" #clientId="ngModel" (change)="search()">
+               <a class="btn btn-success col-sm-1" style="margin-top: -5px;" (click)="search()">
                  <i class="fa fa-search"></i>
                </a>
                 <div [hidden]="clientId.valid || clientId.pristine" class="alert alert-danger">
@@ -44,22 +44,22 @@
               <div class="form-group">
                 <label for="address">Address: </label>
                 <input type="text" class="form-control" id="address" disabled
-                      required [(ngModel)]="Customer.Address" name="address" #address="ngModel">
+                      required [(ngModel)]="Customer.address" name="address" #address="ngModel">
               </div>
               <div class="form-group">
                 <label for="bd">Birthdate: </label>
                 <input type="text" class="form-control" id="bd" disabled
-                      required [(ngModel)]="Customer.Birthdate" name="db" #db="ngModel">
+                      required [(ngModel)]="Customer.birthdate" name="db" #db="ngModel">
               </div>
               <div class="form-group">
                 <label for="id">Id Presented: </label>
                 <input type="text" class="form-control" id="id" disabled
-                      required [(ngModel)]="Customer.IdPresented" name="id" #id="ngModel">
+                      required [(ngModel)]="Customer.idpresented" name="id" #id="ngModel">
               </div>
               <div class="form-group">
                 <label for="cn">Contact Number: </label>
                 <input type="text" class="form-control" id="cn" disabled
-                      required [(ngModel)]="Customer.Contact" name="cn" #cn="ngModel">
+                      required [(ngModel)]="Customer.contact" name="cn" #cn="ngModel">
               </div>
               <div class="form-group">
                 <legend>New Pledge Details</legend>
@@ -103,10 +103,10 @@
                 </div>
               </div>
               <div class="form-group">
-                <label for="principal">Principal: </label>
-                <input type="text" class="form-control" id="principal"
-               required [(ngModel)]="Pledge.principal" name="principal" #principal="ngModel">
-                <div [hidden]="principal.valid || principal.pristine" class="alert alert-danger">
+                <label for="amount">Principal: </label>
+                <input type="text" class="form-control" id="amount"
+               required [(ngModel)]="Pledge.amount" name="amount" #amount="ngModel">
+                <div [hidden]="amount.valid || amount.pristine" class="alert alert-danger">
                   Principal is required!
                 </div>
               </div>
@@ -145,7 +145,7 @@
                </textarea>
               </div>
               <hr class="my-4">
-              <button type="submit" class="btn btn-primary" (click)="save(true, Pledge)">Submit</button>
+              <button type="submit" class="btn btn-primary" (click)="save()">Submit</button>
               <button type="submit" class="btn btn-secondary" (click)="cancel()">Cancel</button>
               <button type="submit" class="btn btn-warning" (click)="clear()">Clear</button>
             </fieldset>

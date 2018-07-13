@@ -21,11 +21,21 @@ export class RenewComponent implements OnInit {
 
   }
 
-  public save() {
+  save() {
+     
   }
 
-  public clear() {
-   
+  search() {
+  
   }
+
+  clear() {
+    
+  }
+  
+  cancel() {
+    
+  }
+  
 
 }

@@ -25,12 +25,12 @@ body {
       display: none !important;
     }
     app-sidebar {
-      width: 65px;
+      width: 85px;
       overflow: hidden;
     }
     .main {
-      left: 65px;
-      width: calc(100% - 65px);
+      left: 85px;
+      width: calc(100% - 85px);
       padding-right: 0px;
     }
   }

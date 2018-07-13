@@ -11,7 +11,7 @@
     <div class="card-body">
         <form #RedeemForm="ngForm" class="col-sm-12">
           <fieldset>
-            <div class="form-group">
+            <div class="form-group">              
               <label for="pawnticket">Pawn ticket number: </label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <input type="text" class="form-control col-sm-8" id="pawnticket" style="display: inline;"
              required [(ngModel)]="Pledge.pawnticket" name="pawnticket" #pawnticket="ngModel" (change)="search()">
@@ -44,22 +44,22 @@
             <div class="form-group">
               <label for="address">Address: </label>
               <input type="text" class="form-control" id="address" disabled
-                [(ngModel)]="Customer.Address" name="address" #address="ngModel">
+                [(ngModel)]="Customer.address" name="address" #address="ngModel">
             </div>
             <div class="form-group">
               <label for="bd">Birthdate: </label>
               <input type="text" class="form-control" id="bd" disabled
-                [(ngModel)]="Customer.Birthdate" name="db" #db="ngModel">
+                [(ngModel)]="Customer.birthdate" name="db" #db="ngModel">
             </div>
             <div class="form-group">
               <label for="id">Id Presented: </label>
               <input type="text" class="form-control" id="id" disabled
-                [(ngModel)]="Customer.IdPresented" name="id" #id="ngModel">
+                [(ngModel)]="Customer.idpresented" name="id" #id="ngModel">
             </div>
             <div class="form-group">
               <label for="cn">Contact Number: </label>
               <input type="text" class="form-control" id="cn" disabled
-                [(ngModel)]="Customer.Contact" name="cn" #cn="ngModel">
+                [(ngModel)]="Customer.contact" name="cn" #cn="ngModel">
             </div>
             <div class="form-group">
               <legend>Pledged Details</legend>
@@ -99,7 +99,7 @@
             <div class="form-group">
               <label for="amount">Principal: </label>
               <input type="text" class="form-control" id="amount" disabled
-              [(ngModel)]="Pledge.Principal" name="amount" #amount="ngModel">
+              [(ngModel)]="Pledge.amount" name="amount" #amount="ngModel">
             </div>
             <div class="form-group">
               <label for="interest">Interest Rate (%): </label>
@@ -120,7 +120,7 @@
              [(ngModel)]="Pledge.amounttotal" name="amounttotal">
             </div>
             <hr class="my-4">
-            <button type="submit" class="btn btn-primary" (click)="save(true, Pledge)">Submit</button>
+            <button type="submit" class="btn btn-primary" (click)="save()">Submit</button>
             <button type="submit" class="btn btn-secondary" (click)="cancel()">Cancel</button>
             <button type="submit" class="btn btn-warning" (click)="clear()">Clear</button>
           </fieldset>

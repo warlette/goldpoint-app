@@ -30,9 +30,21 @@ export class PledgeComponent implements OnInit {
     this.Pledge.dateexpire = this.datepipe.transform(common.setMonth(dateexpire, 4), 'yyyy-MM-dd');
   }
 
-  public save(isValid: boolean, f: Pledge) {
-    console.log(f);
-}
+  save() {
+     
+  }
+
+  search() {
+  
+  }
+
+  clear() {
+    
+  }
+  
+  cancel() {
+    
+  }
 
 
 }

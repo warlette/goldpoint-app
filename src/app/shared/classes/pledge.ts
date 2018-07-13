@@ -16,7 +16,7 @@ export class Pledge {
     public amountsold: number,
     public amounttotal: number,
     public description: string,
-    public servicecharge: string,
+    public servicecharge: number,
     public remarks: string,
     public remarksredeemed: string,
     public remarksrenewed: string,

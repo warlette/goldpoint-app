@@ -13,14 +13,16 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/gp-app",
-            "index": "src/index.html",
+            "outputPath": "../goldpoint-deploy/dist",
+            "index": "src/main.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/css",
+              "src/images"
             ],
             "styles": [
               "src/styles.css"
@@ -123,5 +125,5 @@
       }
     }
   },
-  "defaultProject": "gp-app"
+  "defaultProject": "goldppoint-app"
 }

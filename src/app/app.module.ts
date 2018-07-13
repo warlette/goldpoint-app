@@ -9,7 +9,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { NgxSmartModalModule } from 'ngx-smart-modal';
-import { SearchFilterPipe  } from './shared/pipes/searchfilter';
+import { SearchFilterPipe  } from './shared/pipes/searchFilter';
 import { OrderPipe  } from './shared/pipes/orderBy';
 
 import { AppComponent } from './app.component';
@@ -43,6 +43,7 @@ import { YearlyComponent } from './yearly/yearly.component';
 import { DateToDateComponent } from './date-to-date/date-to-date.component';
 import { HelpComponent } from './help/help.component';
 import { AboutComponent } from './about/about.component';
+import { CalculateComponent } from './calculate/calculate.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -70,6 +71,7 @@ const appRoutes: Routes = [
   { path: 'monthly', component: MonthlyComponent },
   { path: 'yearly', component: YearlyComponent },
   { path: 'datetodate', component: DateToDateComponent },
+  { path: 'calculate', component: CalculateComponent },
   { path: 'help', component: HelpComponent },
   { path: 'about', component: AboutComponent },
   { path: '',
@@ -113,7 +115,8 @@ const appRoutes: Routes = [
     HelpComponent,
     AboutComponent,
     SearchFilterPipe,
-    OrderPipe
+    OrderPipe,
+    CalculateComponent
   ],
   imports: [
     RouterModule.forRoot(
@@ -125,9 +128,10 @@ const appRoutes: Routes = [
     FormsModule,
     NgbModule.forRoot(),
     NgProgressModule.forRoot(/*config*/),
-    NgxSmartModalModule.forRoot() 
+    NgxSmartModalModule.forRoot()
   ],
-  providers: [ CookieService, DatePipe ],
+  exports: [ SearchFilterPipe ],
+  providers: [ CookieService, DatePipe, SearchFilterPipe ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,5 +1,6 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { NgxSmartModalService } from 'ngx-smart-modal';
+import { common } from './../shared/services/common';
 
 @Component({
   selector: 'app-users',
@@ -9,7 +10,12 @@ import { NgxSmartModalService } from 'ngx-smart-modal';
 export class UsersComponent implements AfterViewInit {
 
   iPledge: any;
-
+  Funds: any = [];
+  term: any;
+  searchee: any;
+  sortBy: any = "dateadded";
+  reverse: boolean = false;
+  
   constructor(public ngxSmartModalService: NgxSmartModalService) { }
 
   ngAfterViewInit() {
@@ -25,4 +31,6 @@ export class UsersComponent implements AfterViewInit {
   public log(msg: string) {
     console.log(msg);
   }
+
+  print = common.print;
 }

@@ -22,7 +22,7 @@ export class AddFundComponent implements OnInit {
   ngOnInit() {
   }
 
-  public save() {
+  save() {
     if (!common.hasValue(this.Fund.amount)) {
       alert("Please input amount!");
       return;
@@ -47,11 +47,11 @@ export class AddFundComponent implements OnInit {
     });
   }
 
-  public clear() {
+  clear() {
     this.Fund = new Fund(null, null, null, null, null, null);
   }
 
-  public cancel() {
+  cancel() {
     window.location.href = "/#/home";
   }
 

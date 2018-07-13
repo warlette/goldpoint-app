@@ -107,6 +107,11 @@
     color: #fff;
 }
 
+.panel-renew-alt .panel-heading {
+    background-color: #d19a00;
+    color: #fff;
+}
+
 .panel-repossess-alt .panel-heading {
     background-color: #2d31ed;
     color: #fff;

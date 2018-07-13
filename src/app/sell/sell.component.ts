@@ -19,4 +19,20 @@ export class SellComponent implements OnInit {
   ngOnInit() {
   }
 
+  save() {
+     
+  }
+
+  search() {
+  
+  }
+
+  clear() {
+    
+  }
+  
+  cancel() {
+    
+  }
+
 }

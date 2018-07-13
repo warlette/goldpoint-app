@@ -70,6 +70,17 @@
                 </div>
               </div>
               <div class="form-group">
+                <label for="emailaddress">Email Address: </label>
+                <input type="text" class="form-control" id="emailaddress"
+                 [(ngModel)]="Customer.emailaddress" name="emailaddress" #emailaddress="ngModel">
+              </div>
+              <div class="form-group">
+                <label for="remarkscust">Remarks: </label>
+                <textarea class="form-control" id="remarkscust"
+                [(ngModel)]="Customer.remarks" name="remarkscust" #remarkscust="ngModel">
+               </textarea>
+              </div>
+              <div class="form-group">
                 <legend>New Pledge Details</legend>
                 <hr class="my-4" style="margin: 0px !important">
               </div>
@@ -111,10 +122,10 @@
                 </div>
               </div>
               <div class="form-group">
-                <label for="principal">Principal: </label>
-                <input type="text" class="form-control" id="principal"
-               required [(ngModel)]="Pledge.principal" name="principal" #principal="ngModel">
-                <div [hidden]="principal.valid || principal.pristine" class="alert alert-danger">
+                <label for="amount">Principal: </label>
+                <input type="text" class="form-control" id="amount"
+               required [(ngModel)]="Pledge.amount" name="amount" #amount="ngModel">
+                <div [hidden]="amount.valid || amount.pristine" class="alert alert-danger">
                   Principal is required!
                 </div>
               </div>
@@ -153,9 +164,9 @@
                </textarea>
               </div>
               <hr class="my-4">
-              <button type="submit" class="btn btn-primary" (click)="save(true, iPledge)">Submit</button>
+              <button type="submit" class="btn btn-primary" (click)="save()">Submit</button>
               <button type="submit" class="btn btn-secondary" (click)="cancel()">Cancel</button>
-              <button type="submit" class="btn btn-warning" (click)="clear()">Clear</button>
+              <button type="submit" class="btn btn-warning" (click)="print()">Clear</button>
             </fieldset>
           </form>
     </div>
