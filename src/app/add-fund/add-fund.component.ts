@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Fund } from './../shared/classes/fund';
-import { environment } from './../shared/const/environment';
-import { common } from './../shared/services/common';
+import { Fund } from './../../shared/classes/fund';
+import { environment } from './../../shared/const/environment';
+import { common } from './../../shared/services/common';
 import { CookieService } from 'ngx-cookie-service';
 
 @Component({

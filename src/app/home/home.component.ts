@@ -1,7 +1,7 @@
 import { Component, OnInit, Injectable, NgModule } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { environment } from './../shared/const/environment';
-import { Dashboard } from './../shared/classes/dashboard';
+import { environment } from './../../shared/const/environment';
+import { Dashboard } from './../../shared/classes/dashboard';
 
 @Component({
   selector: 'app-home',
@@ -12,7 +12,7 @@ import { Dashboard } from './../shared/classes/dashboard';
 @Injectable()
 export class HomeComponent implements OnInit {
   
-  Dashboard = new Dashboard(null, null, null);
+  Dashboard = new Dashboard(0, 0, 0);
 
   constructor(
     private http: HttpClient

@@ -1,13 +1,13 @@
 import { Component, OnInit, Injectable } from '@angular/core';
 import { DatePipe, formatNumber } from '@angular/common';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Customer } from './../shared/classes/customer';
-import { Pledge } from './../shared/classes/pledge';
-import { common } from './../shared/services/common';
-import { environment } from './../shared/const/environment';
+import { Customer } from './../../shared/classes/customer';
+import { Pledge } from './../../shared/classes/pledge';
+import { common } from './../../shared/services/common';
+import { environment } from './../../shared/const/environment';
 import { CookieService } from 'ngx-cookie-service';
-import { SearchFilterPipe  } from './../shared/pipes/searchFilter';
-import { printsetting } from './../shared/classes/printsetting';
+import { SearchFilterPipe  } from './../../shared/pipes/searchFilter';
+import { printsetting } from './../../shared/classes/printsetting';
 
 @Component({
   selector: 'app-new-customer',
@@ -17,7 +17,7 @@ import { printsetting } from './../shared/classes/printsetting';
 export class NewCustomerComponent implements OnInit {
 
   Pledge = new Pledge(null,null,null,null,null,null,null,null,null,null,
-    null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null);
+    null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null);
   Customer = new Customer(null,null,null,null,null,null,null,null,null,null,null);
   printsettings: any = [];
   
@@ -85,7 +85,7 @@ export class NewCustomerComponent implements OnInit {
 
     var birthdate = bdate.year + "-" + bdate.month + "-" + bdate.day;
 
-    var body = new HttpParams()
+    var bodyCust = new HttpParams()
       .set('customerid', "-1")
       .set('firstname', this.Customer.firstname)
       .set('middlename', this.Customer.middlename)
@@ -99,7 +99,7 @@ export class NewCustomerComponent implements OnInit {
       .set('addedby', this.cookieService.get('userId'));
 
     this.http.post(environment.baseUrl + '/customer/add', 
-      body.toString(),
+      bodyCust.toString(),
       {
         headers: new HttpHeaders()
           .set('Content-Type', 'application/x-www-form-urlencoded')
@@ -109,7 +109,7 @@ export class NewCustomerComponent implements OnInit {
       if (post[0].customer > 0) {
         alert("Customer info has been posted!");
         
-        var body2 = new HttpParams()
+        var bodyPledge = new HttpParams()
           .set('customerid', post[0].customer)
           .set('isgold', this.Pledge.isgold.toString())
           .set('pawnticket', this.Pledge.pawnticket)
@@ -122,7 +122,7 @@ export class NewCustomerComponent implements OnInit {
           .set('pledgedby', this.cookieService.get('userId'));
     
         this.http.post(environment.baseUrl + '/pledge', 
-          body2.toString(),
+          bodyPledge.toString(),
           {
             headers: new HttpHeaders()
               .set('Content-Type', 'application/x-www-form-urlencoded')
@@ -141,7 +141,7 @@ export class NewCustomerComponent implements OnInit {
   
   print() {
     var $html = '';
-    $html += '<img src="http://localhost:8585/images/pt2.jpg" style="position: fixed; top:0;left:0;width: 1063px"/>';
+    $html += '<img src="http://localhost:8088/images/pt2.jpg" style="position: fixed; top:0;left:0;width: 1063px"/>';
     $html += this.setHTML('pawnticket', this.Pledge.pawnticket); //pawnticket
     $html += this.setHTML('dategranted', this.datepipe.transform(this.Pledge.dateadded, "MMM. dd, yyyy"));  //Date Granted
     $html += this.setHTML('datemature', this.datepipe.transform(this.Pledge.datemature, "MMM. dd, yyyy")); //Date Mature

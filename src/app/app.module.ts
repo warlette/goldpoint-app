@@ -9,8 +9,10 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { NgxSmartModalModule } from 'ngx-smart-modal';
-import { SearchFilterPipe  } from './shared/pipes/searchFilter';
-import { OrderPipe  } from './shared/pipes/orderBy';
+import { SearchFilterPipe  } from './../shared/pipes/searchFilter';
+import { OrderPipe  } from './../shared/pipes/orderBy';
+import { NumberToWordsPipe  } from './../shared/pipes/numberToWords';
+import { CamelizePipe  } from './../shared/pipes/camelize';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -116,7 +118,9 @@ const appRoutes: Routes = [
     AboutComponent,
     SearchFilterPipe,
     OrderPipe,
-    CalculateComponent
+    CalculateComponent,
+    NumberToWordsPipe,
+    CamelizePipe
   ],
   imports: [
     RouterModule.forRoot(
@@ -130,8 +134,8 @@ const appRoutes: Routes = [
     NgProgressModule.forRoot(/*config*/),
     NgxSmartModalModule.forRoot()
   ],
-  exports: [ SearchFilterPipe ],
-  providers: [ CookieService, DatePipe, SearchFilterPipe ],
+  exports: [ ],
+  providers: [ CookieService, DatePipe, SearchFilterPipe, NumberToWordsPipe, CamelizePipe ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -68,7 +68,11 @@
               <div class="form-group">
                   <input type="checkbox" class="form-control" id="isgold" style="display: inline;"
                   required [(ngModel)]="Pledge.isgold" name="isgold" #isgold="ngModel">
-                  <label for="isgold">Is this Pledge for GOLD?</label>               
+                  <label for="isgold">Is this Pledge for GOLD?</label>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <input type="checkbox" class="form-control" id="nocollateral" style="display: inline;"
+                  required [(ngModel)]="Pledge.nocollateral" name="nocollateral" #nocollateral="ngModel">
+                  <label for="nocollateral">No Collateral?</label>             
               </div>
               <div class="form-group">
                 <label for="pawnticket">Pawn Ticket Number: </label>
