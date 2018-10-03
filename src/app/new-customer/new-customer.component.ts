@@ -142,9 +142,12 @@ export class NewCustomerComponent implements OnInit {
   print() {
     var $html = '';
     $html += '<img src="http://localhost:8088/images/pt2.jpg" style="position: fixed; top:0;left:0;width: 1063px"/>';
-    $html += this.setHTML('pawnticket', this.Pledge.pawnticket); //pawnticket
-    $html += this.setHTML('dategranted', this.datepipe.transform(this.Pledge.dateadded, "MMM. dd, yyyy"));  //Date Granted
-    $html += this.setHTML('datemature', this.datepipe.transform(this.Pledge.datemature, "MMM. dd, yyyy")); //Date Mature
+    //pawnticket
+    $html += this.setHTML('pawnticket', this.Pledge.pawnticket);
+    //Date Granted
+    $html += this.setHTML('dategranted', this.datepipe.transform(this.Pledge.dateadded, "MMM. dd, yyyy"));
+    //Date Mature
+    $html += this.setHTML('datemature', this.datepipe.transform(this.Pledge.datemature, "MMM. dd, yyyy"));
     $html += this.setHTML('dateexpire', this.datepipe.transform(this.Pledge.dateexpire, "MMM. dd, yyyy")); //Date Mature
     $html += this.setHTML('name', this.Customer.firstname + " " + this.Customer.lastname); //Name
     $html += this.setHTML('address', this.Customer.address); //Address
@@ -202,6 +205,14 @@ export class NewCustomerComponent implements OnInit {
   
   cancel() {
     
+  }
+
+  checkOption(option) {
+    if (option == 'isgold') {
+      this.Pledge.nocollateral = false;
+    } else if (option == 'nocollateral') {
+      this.Pledge.isgold = false;
+    }
   }
 
 }

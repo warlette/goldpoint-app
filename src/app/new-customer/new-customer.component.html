@@ -86,11 +86,13 @@
               </div>
               <div class="form-group">
                   <input type="checkbox" class="form-control" id="isgold" style="display: inline;"
-                  required [(ngModel)]="Pledge.isgold" name="isgold" #isgold="ngModel">
+                  required [(ngModel)]="Pledge.isgold" name="isgold" #isgold="ngModel"
+                  (click)="checkOption('isgold')">
                   <label for="isgold">Is this Pledge for GOLD?</label>
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   <input type="checkbox" class="form-control" id="nocollateral" style="display: inline;"
-                  required [(ngModel)]="Pledge.nocollateral" name="nocollateral" #nocollateral="ngModel">
+                  required [(ngModel)]="Pledge.nocollateral" name="nocollateral" #nocollateral="ngModel"
+                  (click)="checkOption('nocollateral')">
                   <label for="nocollateral">No Collateral?</label>                
               </div>
               <div class="form-group">
