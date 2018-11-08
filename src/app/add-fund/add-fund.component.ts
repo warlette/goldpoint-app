@@ -17,9 +17,12 @@ export class AddFundComponent implements OnInit {
   constructor(
     private http: HttpClient,
     private cookieService: CookieService
-  ) { }
+  ) {
+    
+   }
 
   ngOnInit() {
+    console.log(environment.baseUrl)
   }
 
   save() {
