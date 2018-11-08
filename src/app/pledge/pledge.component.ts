@@ -1,8 +1,10 @@
 import { Component, OnInit, Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
 import { Customer } from './../../shared/classes/customer';
 import { Pledge } from './../../shared/classes/pledge';
 import { common } from './../../shared/services/common';
+import { environment } from './../../shared/const/environment';
 
 @Component({
   selector: 'app-app-pledge',
@@ -16,7 +18,8 @@ export class PledgeComponent implements OnInit {
   Customer = new Customer(null,null,null,null,null,null,null,null,null,null,null);
 
   constructor(
-    public datepipe: DatePipe
+    public datepipe: DatePipe,
+    private http: HttpClient
   ) { 
 
   }
@@ -35,7 +38,14 @@ export class PledgeComponent implements OnInit {
   }
 
   search() {
-  
+    this.http.get(environment.baseUrl + '/customers/' + this.Customer.id)
+    .subscribe((result: any) => {
+      if (result.length > 0) {
+        this.Customer = result[0];
+      }
+        
+      console.log(result)
+    });
   }
 
   clear() {

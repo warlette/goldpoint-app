@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { environment } from './../shared/const/environment';
+import { environment } from './../../shared/const/environment';
 import { Fund } from './../shared/classes/fund';
 import { common } from './../shared/services/common';
 
@@ -18,7 +18,7 @@ export class FundsComponent implements OnInit {
   reverse: boolean = false;
 
   constructor(
-    private http: HttpClient
+  private http: HttpClient
   ) {
     this.http.get(environment.baseUrl + '/funds/history')
     .subscribe((result: any) => {
