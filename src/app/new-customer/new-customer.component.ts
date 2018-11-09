@@ -179,14 +179,6 @@ export class NewCustomerComponent implements OnInit {
     $html += this.setHTML('contact', this.Customer.contact); //Contact
 
     common.print($html);
-    
-    // var newWin = window.open("");
-    // var css1 = document.createElement("link");
-    // css1.setAttribute("rel", "stylesheet");
-    // css1.setAttribute("type", "text/css");
-    // css1.setAttribute("href", "http://" + window.location.host + "/assets/css/yeti_bootstrap.min.css");
-    // newWin.document.write($html);
-    // newWin.document.getElementsByTagName("head")[0].appendChild(css1);
   }
 
   setHTML(fieldname, value) {

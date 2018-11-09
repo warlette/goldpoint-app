@@ -18,7 +18,7 @@ export class FundsComponent implements OnInit {
   reverse: boolean = false;
 
   constructor(
-  private http: HttpClient
+    private http: HttpClient
   ) {
     this.http.get(environment.baseUrl + '/funds/history')
     .subscribe((result: any) => {
