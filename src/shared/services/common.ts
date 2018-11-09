@@ -25,14 +25,13 @@ export var common = {
         }
         return true;
     },
-    print: function() {
-        var toPrint=document.getElementById("collections");
+    print: function($html) {
         var newWin = window.open("");
         var css1 = document.createElement("link");
         css1.setAttribute("rel", "stylesheet");
         css1.setAttribute("type", "text/css");
         css1.setAttribute("href", "http://" + window.location.host + "/assets/css/yeti_bootstrap.min.css");
-        newWin.document.write(toPrint.outerHTML);
+        newWin.document.write($html);
         newWin.document.getElementsByTagName("head")[0].appendChild(css1);
     }
 };
