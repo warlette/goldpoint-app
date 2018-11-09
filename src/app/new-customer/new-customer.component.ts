@@ -109,10 +109,22 @@ export class NewCustomerComponent implements OnInit {
       if (post[0].customer > 0) {
         alert("Customer info has been posted!");
         
+        if (!common.hasValue(this.Pledge.pawnticket)
+          || !common.hasValue(this.Pledge.amount)
+          || !common.hasValue(this.Pledge.interest)
+          || !common.hasValue(this.Pledge.description)) {
+          return;
+        }
+
+        this.Pledge.isgold = this.Pledge.isgold ? this.Pledge.isgold : false;
+        this.Pledge.nocollateral = this.Pledge.nocollateral ? this.Pledge.nocollateral : false;
+        this.Pledge.customerid = post[0].customer;
+
         var bodyPledge = new HttpParams()
           .set('customerid', post[0].customer)
           .set('isgold', this.Pledge.isgold.toString())
-          .set('pawnticket', this.Pledge.pawnticket)
+          .set('nocollateral', this.Pledge.nocollateral.toString())
+          .set('pawnticket', this.Pledge.pawnticket.toString())
           .set('amount', this.Pledge.amount.toString())
           .set('interest', this.Pledge.interest.toString())
           .set('frequency', this.Pledge.frequency.toString())
@@ -121,16 +133,17 @@ export class NewCustomerComponent implements OnInit {
           .set('remarks', this.Pledge.remarks)
           .set('pledgedby', this.cookieService.get('userId'));
     
-        this.http.post(environment.baseUrl + '/pledge', 
+        this.http.post(environment.baseUrl + '/pledge/add', 
           bodyPledge.toString(),
           {
             headers: new HttpHeaders()
               .set('Content-Type', 'application/x-www-form-urlencoded')
           }
         )
-        .subscribe(post => {      
-          if (post[0].pledge > 0) {
+        .subscribe(postPledge => {      
+          if (postPledge[0].pledge > 0) {
             alert("Pledge has been posted!");
+            this.print();
             window.location.href = "/#/home";
           }
         });
@@ -165,14 +178,15 @@ export class NewCustomerComponent implements OnInit {
     $html += this.setHTML('idpresented', this.Customer.id); //Id Presented
     $html += this.setHTML('contact', this.Customer.contact); //Contact
 
+    common.print($html);
     
-    var newWin = window.open("");
-    var css1 = document.createElement("link");
-    css1.setAttribute("rel", "stylesheet");
-    css1.setAttribute("type", "text/css");
-    css1.setAttribute("href", "http://" + window.location.host + "/assets/css/yeti_bootstrap.min.css");
-    newWin.document.write($html);
-    newWin.document.getElementsByTagName("head")[0].appendChild(css1);
+    // var newWin = window.open("");
+    // var css1 = document.createElement("link");
+    // css1.setAttribute("rel", "stylesheet");
+    // css1.setAttribute("type", "text/css");
+    // css1.setAttribute("href", "http://" + window.location.host + "/assets/css/yeti_bootstrap.min.css");
+    // newWin.document.write($html);
+    // newWin.document.getElementsByTagName("head")[0].appendChild(css1);
   }
 
   setHTML(fieldname, value) {
@@ -200,11 +214,13 @@ export class NewCustomerComponent implements OnInit {
   }
 
   clear() {
-    
+    this.Pledge = new Pledge(null,null,null,null,null,null,null,null,null,null,
+      null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null);
+    this.Customer = new Customer(null,null,null,null,null,null,null,null,null,null,null);
   }
   
   cancel() {
-    
+    window.location.href = "/#/home"
   }
 
   checkOption(option) {
