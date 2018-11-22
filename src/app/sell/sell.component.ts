@@ -174,7 +174,8 @@ export class SellComponent implements OnInit {
   }
   
   cancel() {
-    window.location.href = "/#/home"
+    common.compute(null, null, null);
+    //window.location.href = "/#/home"
   }
 
   print() {
