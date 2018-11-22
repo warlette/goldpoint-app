@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { environment } from './../../shared/const/environment';
-import { Fund } from './../shared/classes/fund';
-import { common } from './../shared/services/common';
+import { Fund } from './../../shared/classes/fund';
+import { common } from './../../shared/services/common';
 
 @Component({
   selector: 'app-funds',

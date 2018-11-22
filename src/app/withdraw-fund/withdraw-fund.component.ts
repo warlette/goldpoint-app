@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
-import { Fund } from './../shared/classes/fund';
-import { environment } from './../shared/const/environment';
-import { common } from './../shared/services/common';
+import { Fund } from './../../shared/classes/fund';
+import { environment } from './../../shared/const/environment';
+import { common } from './../../shared/services/common';
 
 @Component({
   selector: 'app-withdraw-fund',

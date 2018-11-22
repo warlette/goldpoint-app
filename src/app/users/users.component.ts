@@ -1,6 +1,6 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { NgxSmartModalService } from 'ngx-smart-modal';
-import { common } from './../shared/services/common';
+import { common } from './../../shared/services/common';
 
 @Component({
   selector: 'app-users',
