@@ -58,14 +58,99 @@ export var common = {
 
         return months;
     },
-    compute: function(pledge, date, type) {
-        
-        if (!(pledge.isgold && pledge.nocollateral)) {
+    penaltyForNotGoldCollateral: function(pledge, dateTo) {
+        var penDate = new Date((new Date(pledge.dateadded)).setMonth((new Date(pledge.dateadded)).getMonth() + 1)),
+            penMonths = this.dateDiffInMonths(penDate, new Date(dateTo)),
+            penDays,
+            penalty = 0,
+            advanceInterest = (parseFloat(pledge.interest) / 100) * parseFloat(pledge.amount);
             
-        } else if (pledge.isgold && !pledge.nocollateral) {
-
-        } else if (!pledge.isgold && pledge.nocollateral) {
-
+        var computePenalty = function (penDays, advanceInterest, multiplier) {
+            var penalty = 0;
+            if (penDays > 4 && penDays < 26) {
+                penalty = (advanceInterest * (multiplier - 1)) + (advanceInterest / 30) * penDays;
+            } else if (penDays > 25) {
+                penalty = advanceInterest * multiplier;
+            } else {
+                penalty = (advanceInterest * (multiplier - 1));
+            }
+            penalty = (penalty < 0) ? 0 : penalty;
+            return penalty;
         }
+
+        penDate = new Date((new Date(pledge.dateadded)).setMonth((new Date(pledge.dateadded)).getMonth() + (penMonths + 1)));
+        penDays = this.dateDiffInDays(penDate, new Date(dateTo));
+        if (penDays < 0) {
+            penDate = new Date((new Date(pledge.dateadded)).setMonth((new Date(pledge.dateadded)).getMonth() + penMonths));
+            penDays = this.dateDiffInDays(penDate, new Date(dateTo));
+            penalty = computePenalty(penDays, advanceInterest, penMonths);
+        } else {
+            penalty = computePenalty(penDays, advanceInterest, (penMonths + 1));
+        }
+        
+        return {
+            amount: parseFloat(pledge.amount),
+            advanceInterest: advanceInterest,
+            penalty: penalty
+        };
+    },
+    penaltyForGoldCollateral: function(pledge, dateTo) {
+        var penDate = new Date(pledge.dateadded),
+        penMonths = this.dateDiffInMonths(penDate, new Date(dateTo)),
+        penDays,
+        penalty = 0,
+        advanceInterest = (parseFloat(pledge.interest) / 100) * parseFloat(pledge.amount);
+        
+        var computePenalty = function (penDays, advanceInterest, multiplier) {
+            var penalty = 0;
+            if (penDays >= 0 && penDays <= 10) {
+                penalty = (advanceInterest * ((multiplier * 5) + 1));
+            } else if (penDays >= 11 && penDays <= 21) {
+                penalty = (advanceInterest * ((multiplier * 5) + 2));
+            } else if (penDays >= 22 && penDays <= 32) {
+                penalty = (advanceInterest * ((multiplier * 5) + 3));
+            }
+            penalty = (penalty < 0) ? 0 : penalty;
+            return penalty;
+        }
+
+        penDays = this.dateDiffInDays(penDate, new Date(dateTo));
+
+        if (penDays < 33) {
+            penMonths = 0;
+        } else {
+            penDate = new Date((new Date(pledge.dateadded)).setMonth((new Date(pledge.dateadded)).getMonth() + penMonths - 1));
+            penDays = this.dateDiffInDays(penDate, new Date(dateTo));
+
+    		if (penDays < 33) {
+                penMonths -= 1;
+            } else {
+                penDate = new Date((new Date(pledge.dateadded)).setMonth((new Date(pledge.dateadded)).getMonth() + penMonths));
+                penDays = this.dateDiffInDays(penDate, new Date(dateTo));
+            }
+        }
+
+        penalty = computePenalty(penDays, advanceInterest, penMonths);
+
+        return {
+            amount: parseFloat(pledge.amount),
+            advanceInterest: advanceInterest,
+            penalty: penalty
+        };
+    },
+    penaltyForNoCollateral: function(pledge, dateTo) {
+        
+    },
+    compute: function(pledge, dateTo, type) {
+        var result = {};
+
+        if (!(pledge.isgold && pledge.nocollateral)) {
+            result = this.penaltyForNotGoldCollateral(pledge, dateTo);
+        } else if (pledge.isgold && !pledge.nocollateral) {
+            result = this.penaltyForGoldCollateral(pledge, dateTo);
+        } else if (!pledge.isgold && pledge.nocollateral) {
+            result = this.penaltyForNoCollateral(pledge, dateTo);
+        }
+        return result;
     }
 };
