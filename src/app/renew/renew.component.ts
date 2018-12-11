@@ -1,4 +1,4 @@
-import { Component, OnInit, Injectable } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { DatePipe } from '@angular/common';
@@ -20,6 +20,7 @@ export class RenewComponent implements OnInit {
     null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null);
   Customer = new Customer(null,null,null,null,null,null,null,null,null,null,null);
   printsettings: any = [];
+  dateTo = this.datepipe.transform(new Date('6/20/17'), 'shortDate');
 
   constructor(
     public datepipe: DatePipe,
@@ -91,7 +92,7 @@ export class RenewComponent implements OnInit {
       .set('frequency', this.Pledge.frequency.toString())
       .set('description', this.Pledge.description.toString())
       .set('servicecharge', this.Pledge.servicecharge.toString())
-      .set('remarks', this.Pledge.remarks.toString())
+      .set('remarks', this.Pledge.remarks)
       .set('userid', this.cookieService.get('userId'));
 
     this.http.post(environment.baseUrl + '/pledge/add', 
@@ -139,18 +140,18 @@ export class RenewComponent implements OnInit {
           result[0].isgold,
           result[0].nocollateral,
           result[0].pawnticket,
-          result[0].amount,
+          parseFloat(result[0].amount),
           null,
-          result[0].interest,
-          result[0].frequenct,
-          null,
-          null,
-          penalty,
+          parseFloat(result[0].interest),
+          result[0].frequency,
           null,
           null,
-          total,
+          null,
+          null,
+          null,
+          null,
           result[0].description,
-          null,
+          parseFloat(result[0].servicecharge),
           null,
           null,
           null,
@@ -163,8 +164,34 @@ export class RenewComponent implements OnInit {
           this.datepipe.transform(common.setMonth(new Date(result[0].dateadded), 1), 'longDate'),
           this.datepipe.transform(common.setMonth(new Date(result[0].dateadded), 4), 'longDate')
         );
+
+        this.compute();
+
       }
     });
+  }
+
+  compute() {
+    var computedPenalty = common.compute(this.Pledge, this.dateTo);
+
+    if (!common.hasValue(this.Pledge.servicecharge) || 
+      !common.hasValue(this.Pledge.amount)
+    ) {
+      return;
+    }
+  
+    if (computedPenalty) {
+      this.Pledge.penalty = parseFloat(computedPenalty.penalty.toString());
+
+      if (!common.hasValue(this.Pledge.amountprepaid) && (this.Pledge.amountprepaid < this.Pledge.amount)) {
+        this.Pledge.amounttotal = this.Pledge.penalty + 
+          parseFloat(this.Pledge.amountprepaid.toString()) + 
+          ((this.Pledge.interest / 100) * (this.Pledge.amount - parseFloat(this.Pledge.amountprepaid.toString())));
+        this.Pledge.amounttotal += this.Pledge.servicecharge;
+      } else {
+        this.Pledge.amounttotal = this.Pledge.penalty + this.Pledge.servicecharge;
+      }
+    }
   }
 
   clear() {

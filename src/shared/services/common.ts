@@ -38,7 +38,7 @@ export var common = {
         var _MS_PER_DAY = 1000 * 60 * 60 * 24;
         var utc1 = Date.UTC(dateFrom.getFullYear(), dateFrom.getMonth(), dateFrom.getDate());
         var utc2 = Date.UTC(dateTo.getFullYear(), dateTo.getMonth(), dateTo.getDate());
-      
+
         return Math.floor((utc2 - utc1) / _MS_PER_DAY);
     },
     dateDiffInMonths: function(dateFrom, dateTo) {
@@ -101,19 +101,6 @@ export var common = {
         penalty = 0,
         advanceInterest = (parseFloat(pledge.interest) / 100) * parseFloat(pledge.amount);
         
-        var computePenalty = function (penDays, advanceInterest, multiplier) {
-            var penalty = 0;
-            if (penDays >= 0 && penDays <= 10) {
-                penalty = (advanceInterest * ((multiplier * 5) + 1));
-            } else if (penDays >= 11 && penDays <= 21) {
-                penalty = (advanceInterest * ((multiplier * 5) + 2));
-            } else if (penDays >= 22 && penDays <= 32) {
-                penalty = (advanceInterest * ((multiplier * 5) + 3));
-            }
-            penalty = (penalty < 0) ? 0 : penalty;
-            return penalty;
-        }
-
         penDays = this.dateDiffInDays(penDate, new Date(dateTo));
 
         if (penDays < 33) {
@@ -130,6 +117,19 @@ export var common = {
             }
         }
 
+        var computePenalty = function(penDays, advanceInterest, multiplier) {
+            var penalty = 0;
+            if (penDays >= 0 && penDays <= 10) {
+                penalty = (advanceInterest * ((multiplier * 5) + 1));
+            } else if (penDays >= 11 && penDays <= 21) {
+                penalty = (advanceInterest * ((multiplier * 5) + 2));
+            } else if (penDays >= 22 && penDays <= 32) {
+                penalty = (advanceInterest * ((multiplier * 5) + 3));
+            }
+            penalty = (penalty < 0) ? 0 : penalty;
+            return penalty;
+        }
+
         penalty = computePenalty(penDays, advanceInterest, penMonths);
 
         return {
@@ -141,10 +141,10 @@ export var common = {
     penaltyForNoCollateral: function(pledge, dateTo) {
         
     },
-    compute: function(pledge, dateTo, type) {
-        var result = {};
+    compute: function(pledge, dateTo) {
+        var result;
 
-        if (!(pledge.isgold && pledge.nocollateral)) {
+        if (!(pledge.isgold || pledge.nocollateral)) {
             result = this.penaltyForNotGoldCollateral(pledge, dateTo);
         } else if (pledge.isgold && !pledge.nocollateral) {
             result = this.penaltyForGoldCollateral(pledge, dateTo);

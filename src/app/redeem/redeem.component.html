@@ -108,7 +108,7 @@
             <div class="form-group">
               <label for="interest">Interest Rate (%): </label>
               <select class="form-control"  [(ngModel)]="Pledge.interest" disabled name="interest" id="interest">
-                  <option [ngValue]="1" selected>1%</option>
+                  <option value="1" selected>1%</option>
                   <option value="5">5%</option>
                   <option value="10">10%</option>
                 </select>
@@ -122,6 +122,11 @@
               <label for="amounttotal">Total Amount To Be Paid: </label>
               <input type="text" class="form-control" id="amounttotal"  disabled
              [(ngModel)]="Pledge.amounttotal" name="amounttotal">
+            </div>
+            <div class="form-group">
+              <label for="Remarks">Remarks: </label>
+              <input type="text" class="form-control" id="remarks" 
+              [(ngModel)]="Pledge.remarks" name="remarks" #remarks="ngModel">
             </div>
             <hr class="my-4">
             <button type="submit" class="btn btn-primary" (click)="save()">Submit</button>
