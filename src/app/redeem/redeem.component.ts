@@ -77,24 +77,21 @@ export class RedeemComponent implements OnInit {
       alert("Please input description!");
       return;
     }
+
+    this.Pledge.frequency = this.Pledge.frequency || 0;
+
     this.Pledge.isgold = this.Pledge.isgold ? this.Pledge.isgold : false;
     this.Pledge.nocollateral = this.Pledge.nocollateral ? this.Pledge.nocollateral : false;
     this.Pledge.customerid = this.Customer.id;
 
     var body = new HttpParams()
-      .set('customerid', this.Pledge.customerid.toString())
-      .set('isgold', this.Pledge.isgold.toString())
-      .set('nocollateral', this.Pledge.nocollateral.toString())
       .set('pawnticket', this.Pledge.pawnticket.toString())
       .set('amount', this.Pledge.amount.toString())
-      .set('interest', this.Pledge.interest.toString())
-      .set('frequency', this.Pledge.frequency.toString())
-      .set('description', this.Pledge.description.toString())
-      .set('servicecharge', this.Pledge.servicecharge.toString())
-      .set('remarks', this.Pledge.remarks.toString())
-      .set('userid', this.cookieService.get('userId'));
+      .set('penalty', this.Pledge.penalty.toString())
+      .set('remarks', this.Pledge.remarks)
+      .set('redeemedby', this.cookieService.get('userId'));
 
-    this.http.post(environment.baseUrl + '/pledge/add', 
+    this.http.post(environment.baseUrl + '/redeem', 
       body.toString(),
       {
         headers: new HttpHeaders()
@@ -103,8 +100,8 @@ export class RedeemComponent implements OnInit {
     )
     .subscribe(post => {   
       console.log(post)   
-      if (post[0].pledge > 0) {
-        alert("Pledge has been posted!");
+      if (post[0].redeem > 0) {
+        alert("Redeem has been posted!");
         this.print();
         window.location.href = "/#/home"
       }
@@ -118,6 +115,13 @@ export class RedeemComponent implements OnInit {
     this.http.get(environment.baseUrl + '/pledge/' + this.Pledge.pawnticket)
     .subscribe((result: any) => {
       if (result.length > 0) {
+        
+        if (!(result[0].type === 1)) {
+          alert("Ticket has been [redeemed | renewed | repossessed | sold] already!");
+          this.Pledge.pawnticket = null;
+          return;
+        }
+
         this.Customer = new Customer(
           result[0].clientid,
           result[0].firstname,
@@ -132,7 +136,6 @@ export class RedeemComponent implements OnInit {
           null
         );
 
-        netproceed = result[0].amount
         this.Pledge = new Pledge(
           result[0].pledgeid,
           result[0].clientid,
@@ -145,10 +148,10 @@ export class RedeemComponent implements OnInit {
           result[0].frequenct,
           null,
           null,
-          penalty,
           null,
           null,
-          total,
+          null,
+          null,
           result[0].description,
           null,
           null,
@@ -163,14 +166,33 @@ export class RedeemComponent implements OnInit {
           this.datepipe.transform(common.setMonth(new Date(result[0].dateadded), 1), 'longDate'),
           this.datepipe.transform(common.setMonth(new Date(result[0].dateadded), 4), 'longDate')
         );
+
+        this.compute();
+
+      } else {
+        alert('Ticket not found!');
+        return;
       }
     });
   }
 
+  compute() {
+    var computedPenalty = common.compute(this.Pledge, new Date());
+
+    if (computedPenalty) {
+      this.Pledge.penalty = parseFloat(computedPenalty.penalty)
+      if (this.Pledge.isgold) {
+        this.Pledge.penalty -= parseFloat(computedPenalty.advanceInterest);
+      }
+      this.Pledge.amounttotal = parseFloat(computedPenalty.amount) + this.Pledge.penalty;
+    }
+  }
+
   clear() {
-    this.Pledge = new Pledge(null,null,null,null,null,null,null,null,null,null,
-      null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null);
-    this.Customer = new Customer(null,null,null,null,null,null,null,null,null,null,null);
+    // this.Pledge = new Pledge(null,null,null,null,null,null,null,null,null,null,
+    //   null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null);
+    // this.Customer = new Customer(null,null,null,null,null,null,null,null,null,null,null);
+    this.compute();
   }
   
   cancel() {

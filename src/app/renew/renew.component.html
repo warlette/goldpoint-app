@@ -127,14 +127,22 @@
                  Pawn ticket required!
                 </div>
                 <div class="form-group">
-                  <label for="amountprepaid">Partial Payment: </label>
-                  <input type="text" class="form-control" id="amountprepaid" 
-                 [(ngModel)]="Pledge.amountprepaid" name="amountprepaid">
+                  <label for="amountprepaid">Partial Payment: </label><br/>
+                  <input type="text" class="form-control col-sm-10" id="amountprepaid"  (change)="compute()"
+                 [(ngModel)]="Pledge.amountprepaid" name="amountprepaid" #amountprepaid="ngModel" style="display: inline;">
+                 <a class="btn btn-success col-sm-1" style="float:right;" (click)="compute()">
+                  <i class="fa fa-calculator"></i>
+                 </a>
                 </div>
                 <div class="form-group">
                   <label for="amounttotal">Total Amount To Be Paid: </label>
                   <input type="text" class="form-control" id="amounttotal"  disabled
                  [(ngModel)]="Pledge.amounttotal" name="amounttotal">
+                </div>
+                <div class="form-group">
+                  <label for="dateTo">Date To: </label>
+                  <input type="text" class="form-control" id="dateTo" 
+                  [(ngModel)]="dateTo" name="dateTo" #penalty="ngModel">
                 </div>
                 <hr class="my-4">
                 <button type="submit" class="btn btn-primary" (click)="save()">Submit</button>
