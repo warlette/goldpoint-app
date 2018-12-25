@@ -185,4 +185,12 @@ export class PledgeComponent implements OnInit {
     return $html;
   }
 
+  checkOption(option) {
+    if (option == 'isgold') {
+      this.Pledge.nocollateral = false;
+    } else if (option == 'nocollateral') {
+      this.Pledge.isgold = false;
+    }
+  }
+
 }

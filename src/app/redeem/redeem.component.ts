@@ -118,7 +118,7 @@ export class RedeemComponent implements OnInit {
         
         if (!(result[0].type === 1)) {
           alert("Ticket has been [redeemed | renewed | repossessed | sold] already!");
-          this.Pledge.pawnticket = null;
+          this.clear();
           return;
         }
 

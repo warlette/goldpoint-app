@@ -13,20 +13,20 @@
             Search Type:&nbsp;
               <select class="form-control"  [(ngModel)]="term" name="term" id="term">
                 <option [ngValue]="undefined" selected>View All</option>
-                <option value="LoanId">Loan Id</option>
-                <option value="ClientId">Client Id</option>
-                <option value="FirstName">First Name</option>
-                <option value="LastName">Last Name</option>
+                <option value="pawnticket">Pawn Ticket</option>
+                <option value="customerid">Customer Id</option>
+                <option value="firstname">First Name</option>
+                <option value="lastname">Last Name</option>
               </select>&nbsp;&nbsp;
               <input class="form-control mr-sm-2" type="text" placeholder="Search" [(ngModel)]="searchee" name="searchee" id="searchee">
               &nbsp;&nbsp;&nbsp;&nbsp;
               Order by:&nbsp;
               <select class="form-control"  [(ngModel)]="sortBy" name="sortBy" id="sortBy">
                 <option [ngValue]="undefined" selected>Sort</option>
-                <option value="LoanId">Loan Id</option>
-                <option value="ClientId">Client Id</option>
-                <option value="FirstName">First Name</option>
-                <option value="LastName">Last Name</option>
+                <option value="pawnticket">Pawn Ticket</option>
+                <option value="customerid">Customer Id</option>
+                <option value="firstname">First Name</option>
+                <option value="lastname">Last Name</option>
               </select>     
           </form>
         </div>
@@ -47,21 +47,22 @@
                 <th scope="col">Customer Id</th>
                 <th scope="col">Name</th>
                 <th scope="col">Pawn Ticket</th>
+                <th scope="col">Description</th>
                 <th scope="col" class="right">Principal</th>
                 <th scope="col"  class="right">Net Proceed</th>
               </tr>
             </thead>
             <tbody>
-                <tr >
+                <tr *ngFor="let pledge of Pledges | orderBy:sortBy:reverse | searchfilter: term : searchee">
                   <td class="center"><a href="javascript:void(0);" (click)="pay()"><i class="fa fa-credit-card"></i></a></td>
                   <td class="center"><a href="javascript:void(0);" (click)="pay()"><i class="fa fa-credit-card-alt"></i></a></td>
-                  <td></td>
-                  <td class="center">&nbsp;</td>
-                  <td class="center">&nbsp;</td>
-                  <td>&nbsp;</td>
-                  <td class="center">&nbsp;</td>
-                  <td class="right">&nbsp;</td>
-                  <td class="center"  class="right">&nbsp;</td>
+                  <td>{{ pledge.dateadded | date:'yyyy-MM-dd' }}</td>
+                  <td>{{ pledge.customerid }}</td>
+                  <td>{{ pledge.firstname + " " + pledge.lastname }}</td>
+                  <td>{{ pledge.pawnticket}}</td>
+                  <td>{{ pledge.description }}</td>
+                  <td class="right">{{ pledge.principal }}</td>
+                  <td class="right">{{ pledge.netproceed }}</td>
                 </tr>
             </tbody>  
         </table> 

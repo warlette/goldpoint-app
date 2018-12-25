@@ -1,4 +1,4 @@
-import { Component, OnInit, Injectable } from '@angular/core';
+import { Component, OnInit, Injectable, ViewChild, ElementRef } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { DatePipe } from '@angular/common';
@@ -16,6 +16,7 @@ import { SearchFilterPipe  } from './../../shared/pipes/searchFilter';
 })
 export class SellComponent implements OnInit {
 
+  @ViewChild("name") pawnticket: ElementRef;
   Pledge = new Pledge(null,null,null,null,null,null,null,null,null,null,
     null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null);
   Customer = new Customer(null,null,null,null,null,null,null,null,null,null,null);
@@ -26,7 +27,7 @@ export class SellComponent implements OnInit {
     public searchpipe: SearchFilterPipe,
     private http: HttpClient,
     private cookieService: CookieService
-  ) { 
+  ) {
     this.http.get(environment.baseUrl + '/printsettings/pledge')
     .subscribe((result: any) => {
       result.forEach(post => {
@@ -57,6 +58,10 @@ export class SellComponent implements OnInit {
   }
 
   save() {
+    if ((document.activeElement instanceof HTMLElement) && (document.activeElement.id === "pawnticket")) {
+      return;
+    }
+
     if (!common.hasValue(this.Customer.id)) {
       alert("Please select customer!");
       return;
