@@ -54,18 +54,18 @@
               </tr>
             </thead>
             <tbody>
-                <tr>
-                  <td>&nbsp;</td>
-                  <td>&nbsp;</td>
-                  <td>&nbsp;</td>
-                  <td>&nbsp;</td>
-                  <td>&nbsp;</td>
-                  <td>&nbsp;</td>
-                  <td>&nbsp;</td>
-                  <td>&nbsp;</td>
-                  <td>&nbsp;</td>
-                  <td>&nbsp;</td>
-                </tr>
+              <tr *ngFor="let pledge of Pledges | orderBy:sortBy:reverse | searchfilter: term : searchee">
+                <td>{{ pledge.dateadded | date:'yyyy-MM-dd' }}</td>
+                <td>{{ pledge.customerid }}</td>
+                <td>{{ pledge.firstname + " " + pledge.lastname }}</td>
+                <td>{{ pledge.pawnticket}}</td>
+                <td>{{ pledge.description }}</td>
+                <td class="right">{{ pledge.principal }}</td>
+                <td class="right">{{ pledge.netproceed }}</td>
+                <td class="right">{{ pledge.penalty }}</td>
+                <td class="right">{{ pledge.partial }}</td>
+                <td class="right">{{ pledge.totalrenew }}</td>
+              </tr>
             </tbody>  
         </table> 
     </div>
