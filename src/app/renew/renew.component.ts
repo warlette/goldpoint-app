@@ -1,5 +1,6 @@
 import { Component, OnInit, EventEmitter, Output, Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Router, ActivatedRoute } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { DatePipe } from '@angular/common';
 import { Customer } from './../../shared/classes/customer';
@@ -17,16 +18,19 @@ import { SearchFilterPipe  } from './../../shared/pipes/searchFilter';
 export class RenewComponent implements OnInit {
 
   Pledge = new Pledge(null,null,null,null,null,null,null,null,null,null,
-    null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null);
+    null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null);
   Customer = new Customer(null,null,null,null,null,null,null,null,null,null,null);
   printsettings: any = [];
   dateTo = this.datepipe.transform(new Date('6/20/17'), 'shortDate');
+  id: string;
 
   constructor(
     public datepipe: DatePipe,
     public searchpipe: SearchFilterPipe,
     private http: HttpClient,
-    private cookieService: CookieService
+    private cookieService: CookieService,
+    private router: Router,
+    private route: ActivatedRoute
   ) { 
     this.http.get(environment.baseUrl + '/printsettings/pledge')
     .subscribe((result: any) => {
@@ -51,6 +55,15 @@ export class RenewComponent implements OnInit {
         ));
       });
     });
+    
+    this.route.queryParams.subscribe(params => {
+      this.id = params['id'];
+      if (this.id !== undefined) {
+        this.Pledge.pawnticket = this.id;
+        this.search();
+      }
+    });
+
   }
 
   ngOnInit() {
@@ -58,22 +71,40 @@ export class RenewComponent implements OnInit {
   }
 
   save() {
+    
+    if ((document.activeElement instanceof HTMLElement) && (document.activeElement.id === "pawnticket")) {
+      return;
+    }
+
+    if ((document.activeElement instanceof HTMLElement) && (document.activeElement.id === "amountprepaid")) {
+      return;
+    }
+
     if (!common.hasValue(this.Customer.id)) {
       alert("Please select customer!");
       return;
     }
+    
+    if (!common.hasValue(this.Pledge.pawnticketnew)) {
+      alert("Please input new pawn ticket number!");
+      return;
+    }
+
     if (!common.hasValue(this.Pledge.pawnticket)) {
       alert("Please input pawn ticket number!");
       return;
     }
+    
     if (!common.hasValue(this.Pledge.amount)) {
       alert("Please input amount!");
       return;
     }
+
     if (!common.hasValue(this.Pledge.interest)) {
       alert("Please input interest!");
       return;
     }
+
     if (!common.hasValue(this.Pledge.description)) {
       alert("Please input description!");
       return;
@@ -83,29 +114,24 @@ export class RenewComponent implements OnInit {
     this.Pledge.customerid = this.Customer.id;
 
     var body = new HttpParams()
-      .set('customerid', this.Pledge.customerid.toString())
-      .set('isgold', this.Pledge.isgold.toString())
-      .set('nocollateral', this.Pledge.nocollateral.toString())
       .set('pawnticket', this.Pledge.pawnticket.toString())
+      .set('pawnticketnew', this.Pledge.pawnticketnew.toString())
       .set('amount', this.Pledge.amount.toString())
-      .set('interest', this.Pledge.interest.toString())
-      .set('frequency', this.Pledge.frequency.toString())
-      .set('description', this.Pledge.description.toString())
-      .set('servicecharge', this.Pledge.servicecharge.toString())
-      .set('remarks', this.Pledge.remarks)
-      .set('userid', this.cookieService.get('userId'));
+      .set('amountprepaid', this.Pledge.amountprepaid.toString())
+      .set('penalty', this.Pledge.penalty.toString())
+      .set('remarks', this.Pledge.remarksrenewed.toString())
+      .set('renewedby', this.cookieService.get('userId'));
 
-    this.http.post(environment.baseUrl + '/pledge/add', 
+    this.http.post(environment.baseUrl + '/renew', 
       body.toString(),
       {
         headers: new HttpHeaders()
           .set('Content-Type', 'application/x-www-form-urlencoded')
       }
     )
-    .subscribe(post => {   
-      console.log(post)   
-      if (post[0].pledge > 0) {
-        alert("Pledge has been posted!");
+    .subscribe(post => { 
+      if (post[0].renew > 0) {
+        alert("Pledge has been renewed!");
         this.print();
         window.location.href = "/#/home"
       }
@@ -119,6 +145,13 @@ export class RenewComponent implements OnInit {
     this.http.get(environment.baseUrl + '/pledge/' + this.Pledge.pawnticket)
     .subscribe((result: any) => {
       if (result.length > 0) {
+
+        if (!(result[0].type === 1)) {
+          alert("Ticket has been [redeemed | renewed | repossessed | sold] already!");
+          this.clear();
+          return;
+        }
+
         this.Customer = new Customer(
           result[0].clientid,
           result[0].firstname,
@@ -140,6 +173,7 @@ export class RenewComponent implements OnInit {
           result[0].isgold,
           result[0].nocollateral,
           result[0].pawnticket,
+          null,
           parseFloat(result[0].amount),
           null,
           parseFloat(result[0].interest),
@@ -152,6 +186,7 @@ export class RenewComponent implements OnInit {
           null,
           result[0].description,
           parseFloat(result[0].servicecharge),
+          null,
           null,
           null,
           null,
@@ -174,16 +209,18 @@ export class RenewComponent implements OnInit {
   compute() {
     var computedPenalty = common.compute(this.Pledge, this.dateTo);
 
+    this.Pledge.amountprepaid = this.Pledge.amountprepaid || 0;
+
     if (!common.hasValue(this.Pledge.servicecharge) || 
       !common.hasValue(this.Pledge.amount)
     ) {
       return;
     }
-  
+
     if (computedPenalty) {
       this.Pledge.penalty = parseFloat(computedPenalty.penalty.toString());
 
-      if (!common.hasValue(this.Pledge.amountprepaid) && (this.Pledge.amountprepaid < this.Pledge.amount)) {
+      if (common.hasValue(this.Pledge.amountprepaid) && (this.Pledge.amountprepaid < this.Pledge.amount)) {
         this.Pledge.amounttotal = this.Pledge.penalty + 
           parseFloat(this.Pledge.amountprepaid.toString()) + 
           ((this.Pledge.interest / 100) * (this.Pledge.amount - parseFloat(this.Pledge.amountprepaid.toString())));
@@ -192,11 +229,12 @@ export class RenewComponent implements OnInit {
         this.Pledge.amounttotal = this.Pledge.penalty + this.Pledge.servicecharge;
       }
     }
+
   }
 
   clear() {
     this.Pledge = new Pledge(null,null,null,null,null,null,null,null,null,null,
-      null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null);
+      null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null);
     this.Customer = new Customer(null,null,null,null,null,null,null,null,null,null,null);
   }
   
@@ -208,7 +246,7 @@ export class RenewComponent implements OnInit {
     var $html = '';
     $html += '<img src="http://localhost:8000/images/pt2.jpg" style="position: fixed; top:0;left:0;width: 1063px"/>';
     //pawnticket
-    $html += this.setHTML('pawnticket', this.Pledge.pawnticket);
+    $html += this.setHTML('pawnticket', this.Pledge.pawnticketnew);
     //Date Granted
     $html += this.setHTML('dategranted', this.datepipe.transform(this.Pledge.dateadded, "MMM. dd, yyyy"));
     //Date Mature
@@ -229,7 +267,7 @@ export class RenewComponent implements OnInit {
     $html += this.setHTML('netproceed', this.Pledge.amount - this.Pledge.amount * (this.Pledge.interest / 100.00) - this.Pledge.servicecharge); //Net proceed
     $html += this.setHTML('idpresented', this.Customer.id); //Id Presented
     $html += this.setHTML('contact', this.Customer.contact); //Contact
-
+console.log($html)
     common.print($html);
   }
 

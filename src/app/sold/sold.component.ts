@@ -46,5 +46,5 @@ export class SoldComponent implements OnInit {
   ngOnInit() {
   }
 
-  print = common.print;
+  print = common.printTable;
 }

@@ -50,5 +50,5 @@ export class PledgesComponent implements OnInit {
     
   }
 
-  print = common.print;
+  print = common.printTable;
 }

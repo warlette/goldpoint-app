@@ -34,6 +34,16 @@ export var common = {
         newWin.document.write($html);
         newWin.document.getElementsByTagName("head")[0].appendChild(css1);
     },
+    printTable: function() {
+        var toPrint=document.getElementById("collections");
+        var newWin = window.open("");
+        var css1 = document.createElement("link");
+        css1.setAttribute("rel", "stylesheet");
+        css1.setAttribute("type", "text/css");
+        css1.setAttribute("href", "http://" + window.location.host + "/assets/css/yeti_bootstrap.min.css");
+        newWin.document.write(toPrint.outerHTML);
+        newWin.document.getElementsByTagName("head")[0].appendChild(css1);
+    },
     dateDiffInDays: function(dateFrom, dateTo) {
         var _MS_PER_DAY = 1000 * 60 * 60 * 24;
         var utc1 = Date.UTC(dateFrom.getFullYear(), dateFrom.getMonth(), dateFrom.getDate());

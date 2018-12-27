@@ -54,8 +54,8 @@
             </thead>
             <tbody>
                 <tr *ngFor="let pledge of Pledges | orderBy:sortBy:reverse | searchfilter: term : searchee">
-                  <td class="center"><a href="javascript:void(0);" (click)="pay()"><i class="fa fa-credit-card"></i></a></td>
-                  <td class="center"><a href="javascript:void(0);" (click)="pay()"><i class="fa fa-credit-card-alt"></i></a></td>
+                  <td class="center"><a href="#/redeem/?id={{pledge.pawnticket}}"><i class="fa fa-credit-card"></i></a></td>
+                  <td class="center"><a href="#/renew/?id={{pledge.pawnticket}}"><i class="fa fa-credit-card-alt"></i></a></td>
                   <td>{{ pledge.dateadded | date:'yyyy-MM-dd' }}</td>
                   <td>{{ pledge.customerid }}</td>
                   <td>{{ pledge.firstname + " " + pledge.lastname }}</td>

@@ -1,5 +1,6 @@
 import { Component, OnInit, Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Router, ActivatedRoute } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { DatePipe } from '@angular/common';
 import { Customer } from './../../shared/classes/customer';
@@ -17,15 +18,18 @@ import { SearchFilterPipe  } from './../../shared/pipes/searchFilter';
 export class RedeemComponent implements OnInit {
 
   Pledge = new Pledge(null,null,null,null,null,null,null,null,null,null,
-    null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null);
+    null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null);
   Customer = new Customer(null,null,null,null,null,null,null,null,null,null,null);
   printsettings: any = [];
+  id: string;
 
   constructor(
     public datepipe: DatePipe,
     public searchpipe: SearchFilterPipe,
     private http: HttpClient,
-    private cookieService: CookieService
+    private cookieService: CookieService,
+    private router: Router,
+    private route: ActivatedRoute
   ) { 
     this.http.get(environment.baseUrl + '/printsettings/pledge')
     .subscribe((result: any) => {
@@ -50,6 +54,15 @@ export class RedeemComponent implements OnInit {
         ));
       });
     });
+
+    this.route.queryParams.subscribe(params => {
+      this.id = params['id'];
+      if (this.id !== undefined) {
+        this.Pledge.pawnticket = this.id;
+        this.search();
+      }
+    });
+
   }
 
   ngOnInit() {
@@ -57,6 +70,11 @@ export class RedeemComponent implements OnInit {
   }
 
   save() {
+    
+    if ((document.activeElement instanceof HTMLElement) && (document.activeElement.id === "pawnticket")) {
+      return;
+    }
+
     if (!common.hasValue(this.Customer.id)) {
       alert("Please select customer!");
       return;
@@ -142,6 +160,7 @@ export class RedeemComponent implements OnInit {
           result[0].isgold,
           result[0].nocollateral,
           result[0].pawnticket,
+          null,
           result[0].amount,
           null,
           result[0].interest,
@@ -153,6 +172,7 @@ export class RedeemComponent implements OnInit {
           null,
           null,
           result[0].description,
+          null,
           null,
           null,
           null,
@@ -190,7 +210,7 @@ export class RedeemComponent implements OnInit {
 
   clear() {
     // this.Pledge = new Pledge(null,null,null,null,null,null,null,null,null,null,
-    //   null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null);
+    //   null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null);
     // this.Customer = new Customer(null,null,null,null,null,null,null,null,null,null,null);
     this.compute();
   }

@@ -121,6 +121,16 @@
                 <div [hidden]="amountsold.valid || amountsold.pristine" class="alert alert-danger">
                  Pawn ticket required!
                 </div>
+                <div class="form-group">
+                  <label for="Remarks">Sold To: </label>
+                  <input type="text" class="form-control" id="soldto" 
+                  [(ngModel)]="Pledge.soldto" name="soldto" #soldto="ngModel">
+                </div>
+                <div class="form-group">
+                  <label for="Remarks">Remarks: </label>
+                  <input type="text" class="form-control" id="remarkssold" 
+                  [(ngModel)]="Pledge.remarkssold" name="remarkssold" #remarkssold="ngModel">
+                </div>
                 <hr class="my-4">
                 <button type="submit" class="btn btn-primary" (click)="save()">Submit</button>
                 <button type="submit" class="btn btn-secondary" (click)="cancel()">Cancel</button>

@@ -17,7 +17,7 @@ import { printsetting } from './../../shared/classes/printsetting';
 export class NewCustomerComponent implements OnInit {
 
   Pledge = new Pledge(null,null,null,null,null,null,null,null,null,null,
-    null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null);
+    null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null);
   Customer = new Customer(null,null,null,null,null,null,null,null,null,null,null);
   printsettings: any = [];
   
@@ -207,7 +207,7 @@ export class NewCustomerComponent implements OnInit {
 
   clear() {
     this.Pledge = new Pledge(null,null,null,null,null,null,null,null,null,null,
-      null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null);
+      null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null);
     this.Customer = new Customer(null,null,null,null,null,null,null,null,null,null,null);
   }
   

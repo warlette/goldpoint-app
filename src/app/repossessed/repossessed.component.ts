@@ -45,6 +45,6 @@ export class RepossessedComponent implements OnInit {
   ngOnInit() {
   }
 
-  print = common.print;
+  print = common.printTable;
 
 }

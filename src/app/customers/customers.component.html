@@ -50,13 +50,13 @@
               </tr>
             </thead>
             <tbody>
-                <tr >
-                  <td class="center"><a href="javascript:void(0);" ><i class="fa fa-clipboard"></i></a></td>
-                  <td>&nbsp;</td>
-                  <td>&nbsp;</td>
-                  <td>&nbsp;</td>
-                  <td>&nbsp;</td>
-                  <td>&nbsp;</td>
+                <tr *ngFor="let customer of Customers | orderBy:sortBy:reverse | searchfilter: term : searchee">
+                  <td class="center"><a href="#/pledge/?id={{customer.customerid}}"><i class="fa fa-credit-card"></i></a></td>                    
+                  <td>{{ customer.dateadded | date:'yyyy-MM-dd' }}</td>
+                  <td class="center">{{ customer.customerid }}</td>
+                  <td>{{ customer.firstname + " " + customer.lastname }}</td>
+                  <td>{{ customer.address}}</td>
+                  <td>{{ customer.contact }}</td>
                 </tr>
             </tbody>  
         </table> 

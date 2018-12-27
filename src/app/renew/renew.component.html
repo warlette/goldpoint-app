@@ -75,6 +75,11 @@
                     <label for="nocollateral">No Collateral?</label>             
                 </div>
                 <div class="form-group">
+                  <label for="pt">New Pawn Ticket Number: </label>
+                  <input type="text" class="form-control" id="pawnticketnew" 
+                  [(ngModel)]="Pledge.pawnticketnew" name="pawnticketnew" #pawnticketnew="ngModel">
+                </div>
+                <div class="form-group">
                   <label for="pt">Pawn Ticket Number: </label>
                   <input type="text" class="form-control" id="pt" disabled
                   [(ngModel)]="Pledge.pawnticket" name="pt" #pt="ngModel">
@@ -138,6 +143,11 @@
                   <label for="amounttotal">Total Amount To Be Paid: </label>
                   <input type="text" class="form-control" id="amounttotal"  disabled
                  [(ngModel)]="Pledge.amounttotal" name="amounttotal">
+                </div>
+                <div class="form-group">
+                  <label for="Remarks">Remarks: </label>
+                  <input type="text" class="form-control" id="remarksrenewed" 
+                  [(ngModel)]="Pledge.remarksrenewed" name="remarksrenewed" #remarksrenewed="ngModel">
                 </div>
                 <div class="form-group">
                   <label for="dateTo">Date To: </label>

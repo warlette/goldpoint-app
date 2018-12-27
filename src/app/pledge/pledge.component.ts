@@ -1,5 +1,6 @@
 import { Component, OnInit, Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Router, ActivatedRoute } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { DatePipe } from '@angular/common';
 import { Customer } from './../../shared/classes/customer';
@@ -17,15 +18,18 @@ import { SearchFilterPipe  } from './../../shared/pipes/searchFilter';
 export class PledgeComponent implements OnInit {
 
   Pledge = new Pledge(null,null,null,null,null,null,null,null,null,null,
-    null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null);
+    null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null);
   Customer = new Customer(null,null,null,null,null,null,null,null,null,null,null);
   printsettings: any = [];
+  id: number;
 
   constructor(
     public datepipe: DatePipe,
     public searchpipe: SearchFilterPipe,
     private http: HttpClient,
-    private cookieService: CookieService
+    private cookieService: CookieService,
+    private router: Router,
+    private route: ActivatedRoute
   ) { 
     this.http.get(environment.baseUrl + '/printsettings/pledge')
     .subscribe((result: any) => {
@@ -49,6 +53,14 @@ export class PledgeComponent implements OnInit {
           post.color
         ));
       });
+    });
+
+    this.route.queryParams.subscribe(params => {
+      this.id = params['id'];
+      if (this.id !== undefined) {
+        this.Customer.id = this.id;
+        this.search();
+      }
     });
   }
 
@@ -106,8 +118,7 @@ export class PledgeComponent implements OnInit {
           .set('Content-Type', 'application/x-www-form-urlencoded')
       }
     )
-    .subscribe(post => {   
-      console.log(post)   
+    .subscribe(post => { 
       if (post[0].pledge > 0) {
         alert("Pledge has been posted!");
         this.print();
@@ -128,7 +139,7 @@ export class PledgeComponent implements OnInit {
 
   clear() {
     this.Pledge = new Pledge(null,null,null,null,null,null,null,null,null,null,
-      null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null);
+      null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null);
     this.Customer = new Customer(null,null,null,null,null,null,null,null,null,null,null);
   }
   

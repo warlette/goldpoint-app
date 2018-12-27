@@ -18,7 +18,7 @@ export class SellComponent implements OnInit {
 
   @ViewChild("name") pawnticket: ElementRef;
   Pledge = new Pledge(null,null,null,null,null,null,null,null,null,null,
-    null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null);
+    null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null);
   Customer = new Customer(null,null,null,null,null,null,null,null,null,null,null);
   printsettings: any = [];
 
@@ -87,30 +87,22 @@ export class SellComponent implements OnInit {
     this.Pledge.customerid = this.Customer.id;
 
     var body = new HttpParams()
-      .set('customerid', this.Pledge.customerid.toString())
-      .set('isgold', this.Pledge.isgold.toString())
-      .set('nocollateral', this.Pledge.nocollateral.toString())
       .set('pawnticket', this.Pledge.pawnticket.toString())
-      .set('amount', this.Pledge.amount.toString())
-      .set('interest', this.Pledge.interest.toString())
-      .set('frequency', this.Pledge.frequency.toString())
-      .set('description', this.Pledge.description.toString())
-      .set('servicecharge', this.Pledge.servicecharge.toString())
-      .set('remarks', this.Pledge.remarks.toString())
+      .set('soldto', this.Pledge.soldto.toString())
+      .set('remarks', this.Pledge.remarkssold.toString())
+      .set('amount', this.Pledge.amountsold.toString())
       .set('userid', this.cookieService.get('userId'));
 
-    this.http.post(environment.baseUrl + '/pledge/add', 
+    this.http.post(environment.baseUrl + '/sell', 
       body.toString(),
       {
         headers: new HttpHeaders()
           .set('Content-Type', 'application/x-www-form-urlencoded')
       }
     )
-    .subscribe(post => {   
-      console.log(post)   
-      if (post[0].pledge > 0) {
-        alert("Pledge has been posted!");
-        this.print();
+    .subscribe(post => {
+      if (post[0].sold === 0) {
+        alert("Item has been sold!");
         window.location.href = "/#/home"
       }
     });
@@ -123,6 +115,13 @@ export class SellComponent implements OnInit {
     this.http.get(environment.baseUrl + '/pledge/' + this.Pledge.pawnticket)
     .subscribe((result: any) => {
       if (result.length > 0) {
+
+        if (!(result[0].type === 4)) {
+          alert("Ticket has been [redeemed | renewed | repossessed | sold] already!");
+          this.clear();
+          return;
+        }
+
         this.Customer = new Customer(
           result[0].clientid,
           result[0].firstname,
@@ -144,10 +143,11 @@ export class SellComponent implements OnInit {
           result[0].isgold,
           result[0].nocollateral,
           result[0].pawnticket,
+          null,
           result[0].amount,
           null,
           result[0].interest,
-          result[0].frequenct,
+          result[0].frequency,
           null,
           null,
           penalty,
@@ -155,6 +155,7 @@ export class SellComponent implements OnInit {
           null,
           total,
           result[0].description,
+          0,
           null,
           null,
           null,
@@ -174,7 +175,7 @@ export class SellComponent implements OnInit {
 
   clear() {
     this.Pledge = new Pledge(null,null,null,null,null,null,null,null,null,null,
-      null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null);
+      null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null);
     this.Customer = new Customer(null,null,null,null,null,null,null,null,null,null,null);
   }
   

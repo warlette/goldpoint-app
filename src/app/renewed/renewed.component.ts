@@ -46,6 +46,6 @@ export class RenewedComponent implements OnInit {
   ngOnInit() {
   }
 
-  print = common.print;
+  print = common.printTable;
 
 }

@@ -46,5 +46,5 @@ export class RedeemedComponent implements OnInit {
   ngOnInit() {
   }
 
-  print = common.print;
+  print = common.printTable;
 }
