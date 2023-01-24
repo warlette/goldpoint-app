@@ -5,3 +5,8 @@
 .dropdown-menu.show[aria-labelledby="themes"] {
     width: 240px;
 }
+
+.container {
+    width: 100%;
+    max-width: 100%;
+}

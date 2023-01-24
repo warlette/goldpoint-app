@@ -19,15 +19,15 @@ export class AppComponent implements OnInit {
   }
 
   startLoading() {
-    this.progress.start();
+   // this.progress.start();
   }
 
   completeLoading() {
-    this.progress.complete();
+   // this.progress.complete();
   }
 
   changeProgressColor() {
-    this.progress.setConfig({ color: 'green' });
+   // this.progress.setConfig({ color: 'green' });
   }
 
   ngOnInit() {

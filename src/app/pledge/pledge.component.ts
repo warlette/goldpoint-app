@@ -111,7 +111,7 @@ export class PledgeComponent implements OnInit {
       .set('remarks', this.Pledge.remarks.toString())
       .set('userid', this.cookieService.get('userId'));
 
-    this.http.post(environment.baseUrl + '/pledge/add', 
+    this.http.post(environment.baseUrl + '/pledge', 
       body.toString(),
       {
         headers: new HttpHeaders()

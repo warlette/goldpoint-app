@@ -28,7 +28,7 @@
     "ng4-auto-complete": "^1.0.0",
     "ngx-cookie-service": "^1.0.10",
     "ngx-smart-modal": "^6.0.4",
-    "rxjs": "^6.0.0",
+    "rxjs": "6.0.0",
     "zone.js": "^0.8.26"
   },
   "devDependencies": {

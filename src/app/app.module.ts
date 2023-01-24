@@ -131,7 +131,7 @@ const appRoutes: Routes = [
     HttpClientModule,
     FormsModule,
     NgbModule.forRoot(),
-    NgProgressModule.forRoot(/*config*/),
+    NgProgressModule,
     NgxSmartModalModule.forRoot()
   ],
   exports: [ ],
